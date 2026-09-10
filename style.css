@@ -4280,3 +4280,266 @@ nav a:focus-visible {
     }
 
 }
+/* ============================= */
+/*       EMERGENCY CONTACTS      */
+/* ============================= */
+
+.emergency-section {
+    padding: 100px 6%;
+    background: var(--background);
+}
+
+.emergency-heading {
+    max-width: 750px;
+    margin: 0 auto 50px;
+    text-align: center;
+
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.emergency-heading.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.emergency-heading > span {
+    display: inline-block;
+    margin-bottom: 14px;
+
+    color: var(--primary-orange);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.emergency-heading h2 {
+    margin: 0 0 18px;
+
+    background: linear-gradient(
+        90deg,
+        #DC2626 0%,
+        #F97316 30%,
+        #FACC15 60%,
+        #2563EB 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    font-size: 48px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.emergency-heading p {
+    max-width: 650px;
+    margin: 0 auto;
+
+    color: #78716c;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* ---------- GRID ---------- */
+
+.emergency-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+/* ---------- CARD ---------- */
+
+.emergency-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 28px 24px;
+
+    border: 1px solid rgba(41, 37, 36, 0.08);
+    box-shadow: 0 8px 28px rgba(41, 37, 36, 0.06);
+
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.emergency-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.emergency-card.show:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px rgba(41, 37, 36, 0.12);
+    border-color: rgba(250, 204, 21, 0.55);
+}
+
+.emergency-card:nth-child(1) { transition-delay: 0s; }
+.emergency-card:nth-child(2) { transition-delay: 0.1s; }
+.emergency-card:nth-child(3) { transition-delay: 0.2s; }
+.emergency-card:nth-child(4) { transition-delay: 0.3s; }
+
+/* ---------- CARD ICON ---------- */
+
+.emergency-card-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    font-size: 22px;
+
+    margin-bottom: 16px;
+}
+
+.emergency-card:nth-child(1) .emergency-card-icon {
+    color: #DC2626;
+    background: rgba(220, 38, 38, 0.10);
+}
+
+.emergency-card:nth-child(2) .emergency-card-icon {
+    color: #2563EB;
+    background: rgba(37, 99, 235, 0.09);
+}
+
+.emergency-card:nth-child(3) .emergency-card-icon {
+    color: #C026D3;
+    background: rgba(192, 38, 211, 0.09);
+}
+
+.emergency-card:nth-child(4) .emergency-card-icon {
+    color: #F97316;
+    background: rgba(249, 115, 22, 0.10);
+}
+
+/* ---------- CARD TITLE ---------- */
+
+.emergency-card h3 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+/* ---------- CONTACT ROW ---------- */
+
+.emergency-contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid rgba(41, 37, 36, 0.08);
+
+    font-size: 14px;
+}
+
+.emergency-contact-row:last-child {
+    border-bottom: none;
+}
+
+.emergency-contact-row .label {
+    color: #78716c;
+}
+
+.emergency-contact-row a {
+    color: var(--primary-orange);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: color 0.3s ease;
+}
+
+.emergency-contact-row a:hover {
+    color: #EA580C;
+}
+
+/* ---------- NOTE ---------- */
+
+.emergency-note {
+    max-width: 700px;
+    margin: 32px auto 0;
+
+    color: #a8a29e;
+    font-size: 12.5px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1000px) {
+
+    .emergency-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .emergency-section {
+        padding: 70px 5%;
+    }
+
+    .emergency-heading {
+        margin-bottom: 35px;
+    }
+
+    .emergency-heading h2 {
+        font-size: 34px;
+    }
+
+    .emergency-heading p {
+        font-size: 15px;
+    }
+
+    .emergency-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .emergency-card {
+        padding: 24px 20px;
+    }
+
+}
+
+/* ---------- REDUCED MOTION ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .emergency-heading,
+    .emergency-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .emergency-card.show:hover {
+        transform: none;
+    }
+
+}

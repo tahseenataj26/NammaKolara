@@ -427,3 +427,55 @@ if (knowKolarHeading) {
 knowKolarItems.forEach((item) => {
     knowKolarObserver.observe(item);
 });
+/* ========================================= */
+/*         EMERGENCY CONTACTS ANIMATION       */
+/* ========================================= */
+
+const emergencyHeading = document.querySelector(".emergency-heading");
+const emergencyCards = document.querySelectorAll(".emergency-card");
+
+const emergencyHeadingObserver = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            } else {
+                entry.target.classList.remove("show");
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.3
+    }
+);
+
+if (emergencyHeading) {
+    emergencyHeadingObserver.observe(emergencyHeading);
+}
+
+const emergencyCardsObserver = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            } else {
+                entry.target.classList.remove("show");
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.2
+    }
+);
+
+emergencyCards.forEach((card) => {
+    emergencyCardsObserver.observe(card);
+});
