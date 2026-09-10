@@ -356,6 +356,9 @@ if (heroSection) {
 const knowKolarQuestions =
     document.querySelectorAll(".know-kolar-question");
 
+const knowKolarItems =
+    document.querySelectorAll(".know-kolar-item");
+
 knowKolarQuestions.forEach((question) => {
 
     question.addEventListener("click", () => {
@@ -363,30 +366,40 @@ knowKolarQuestions.forEach((question) => {
         const item =
             question.closest(".know-kolar-item");
 
-        document
-            .querySelectorAll(".know-kolar-item")
-            .forEach((otherItem) => {
+        knowKolarItems.forEach((otherItem) => {
 
-                if (otherItem !== item) {
-                    otherItem.classList.remove("active");
-                }
+            if (otherItem !== item) {
+                otherItem.classList.remove("active");
+            }
 
-            });
+        });
 
         item.classList.toggle("active");
 
     });
 
 });
+
+
+// =============================
+//     CLOSE FAQ ON SCROLL
+// =============================
+
+window.addEventListener("scroll", () => {
+
+    knowKolarItems.forEach((item) => {
+        item.classList.remove("active");
+    });
+
+}, { passive: true });
+
+
 // =============================
 //     KNOW KOLAR ANIMATION
 // =============================
 
 const knowKolarHeading =
     document.querySelector(".know-kolar-heading");
-
-const knowKolarItems =
-    document.querySelectorAll(".know-kolar-item");
 
 const knowKolarObserver = new IntersectionObserver(
     (entries) => {
