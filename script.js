@@ -406,21 +406,6 @@ knowKolarQuestions.forEach((question) => {
     });
 
 });
-
-
-// =============================
-//     CLOSE FAQ ON SCROLL
-// =============================
-
-window.addEventListener("scroll", () => {
-
-    knowKolarItems.forEach((item) => {
-        item.classList.remove("active");
-    });
-
-}, { passive: true });
-
-
 // =============================
 //     KNOW KOLAR ANIMATION
 // =============================
