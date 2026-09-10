@@ -22,7 +22,17 @@ if (closeMenu && mobileMenu) {
     });
 
 }
+const heroSearchForm = document.querySelector(".hero-search");
 
+if (heroSearchForm) {
+    heroSearchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const query = heroSearchForm.querySelector("input").value.trim();
+        if (query) {
+            document.querySelector("#explore").scrollIntoView({ behavior: "smooth" });
+        }
+    });
+}
 
 /* ========================================= */
 /*          ABOUT SCROLL ANIMATION            */

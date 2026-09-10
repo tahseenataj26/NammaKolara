@@ -330,7 +330,171 @@ section {
     box-shadow: 0 5px 12px rgba(249, 115, 22, 0.3);
 }
 
+.hero-cta-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 30px;
 
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.75s forwards;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 22px;
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.hero-cta.primary {
+    background: var(--primary-orange);
+    color: #fff;
+}
+
+.hero-cta.primary:hover {
+    background: #EA580C;
+    transform: translateY(-2px);
+}
+
+.hero-cta.secondary {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    backdrop-filter: blur(4px);
+}
+
+.hero-cta.secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+
+@media (max-width: 900px) {
+    .hero-cta-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .hero-cta {
+        width: auto;
+        justify-content: center;
+    }
+}
+/* =========================================
+   EXTRA SMALL SCREENS (phones under 480px)
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    /* Navbar */
+    nav {
+        padding: 8px 16px;
+    }
+
+    nav img {
+        width: 88px;
+    }
+
+    /* Hero */
+    .hero {
+        height: 560px;
+    }
+
+    .hero-content {
+        left: 16px;
+        width: 90%;
+    }
+
+    .hero-tag {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+    }
+
+    .hero-content h1 {
+        font-size: 26px;
+        line-height: 1.2;
+    }
+
+    .hero-search {
+        margin-top: 20px;
+    }
+
+    .hero-search input {
+        padding: 12px;
+        font-size: 13px;
+        min-width: 0;
+    }
+
+    .hero-search button {
+        padding: 12px 16px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .hero-divider {
+        margin-top: 18px;
+    }
+
+    .hero-divider span {
+        font-size: 11px;
+    }
+
+    .hero-cta-row {
+        margin-top: 16px;
+        gap: 10px;
+    }
+
+    .hero-cta {
+        padding: 11px 18px;
+        font-size: 13px;
+    }
+
+    /* About section */
+    .about-content h2 {
+        font-size: 28px;
+    }
+
+    .about-description {
+        font-size: 14px;
+    }
+
+    /* Section headings across the site */
+    .explore-heading h2,
+    .updates-heading h2,
+    .events-heading h2,
+    .know-kolar-heading h2,
+    .emergency-heading h2,
+    .map-heading h2 {
+        font-size: 28px;
+    }
+
+    .explore-heading p,
+    .updates-heading p,
+    .events-heading p,
+    .know-kolar-heading p,
+    .emergency-heading p,
+    .map-heading p {
+        font-size: 14px;
+    }
+
+    /* Footer */
+    .footer-logo {
+        font-size: 22px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+    }
+
+}
 /* =========================
    RESPONSIVE DESIGN
 ========================= */
@@ -368,20 +532,20 @@ section {
     /* Mobile Search */
 
     .hero-search {
-        flex-direction: column;
-        background: transparent;
-        padding: 0;
-        gap: 10px;
+        flex-direction: row;
+        background: white;
+        padding: 6px;
+        gap: 0;
     }
 
     .hero-search input {
         width: 100%;
         border-radius: 10px;
-        background: white;
+        background: transparent;
     }
 
     .hero-search button {
-        width: 100%;
+        width: auto;
     }
 }
 @media (max-width: 900px) {
