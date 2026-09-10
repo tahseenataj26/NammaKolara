@@ -22,17 +22,34 @@ if (closeMenu && mobileMenu) {
     });
 
 }
-const heroSearchForm = document.querySelector(".hero-search");
+/* ========================================= */
+/*            STATS CARD ANIMATION            */
+/* ========================================= */
 
-if (heroSearchForm) {
-    heroSearchForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const query = heroSearchForm.querySelector("input").value.trim();
-        if (query) {
-            document.querySelector("#explore").scrollIntoView({ behavior: "smooth" });
-        }
-    });
-}
+const statCards = document.querySelectorAll(".stat-card");
+
+const statCardsObserver = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            } else {
+                entry.target.classList.remove("show");
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.2
+    }
+);
+
+statCards.forEach((card) => {
+    statCardsObserver.observe(card);
+});
 
 /* ========================================= */
 /*          ABOUT SCROLL ANIMATION            */
