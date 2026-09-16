@@ -30,16 +30,23 @@ body {
     text-align: center;
     padding: 80px 20px 45px;
 }
-
 .places-intro h1 {
     font-size: 48px;
     font-weight: 800;
     margin-bottom: 15px;
+    color: var(--text);
+}
+
+.places-intro h1 span {
+    color: var(--magenta);
 }
 
 .places-intro p {
     font-size: 18px;
     color: #645955;
+    max-width:700px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 
