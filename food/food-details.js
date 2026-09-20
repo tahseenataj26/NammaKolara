@@ -1,7 +1,15 @@
 /* =========================================================
    NAMMA KOLAR — RAGI MUDDE DETAIL PAGE
-   Individual Restaurant Location + Directions
-   ========================================================= */
+
+   Features:
+   1. Scroll reveal
+   2. Current user location
+   3. Restaurant address geocoding
+   4. Approximate straight-line distance
+   5. Individual restaurant processing
+   6. Google Maps directions
+========================================================= */
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -9,302 +17,842 @@ document.addEventListener("DOMContentLoaded", () => {
        ELEMENTS
     ===================================================== */
 
-    const revealElements = document.querySelectorAll(
-        ".ragi-hero, .served-card, .restaurant-card, .district-note"
+    const revealElements =
+        document.querySelectorAll(
+            ".ragi-hero, .served-card, .restaurant-card, .district-note"
+        );
+
+
+    const restaurantCards =
+        document.querySelectorAll(
+            ".restaurant-card"
+        );
+
+
+    const locationPanel =
+        document.getElementById(
+            "locationPanel"
+        );
+
+
+    const locationTitle =
+        document.getElementById(
+            "locationTitle"
+        );
+
+
+    const locationMessage =
+        document.getElementById(
+            "locationMessage"
+        );
+
+
+    /* =====================================================
+       DEBUG MESSAGE
+    ===================================================== */
+
+    console.log(
+        "Namma Kolara food-details.js loaded successfully."
     );
 
-    const restaurantCards = document.querySelectorAll(".restaurant-card");
+    console.log(
+        "Restaurant cards found:",
+        restaurantCards.length
+    );
 
-    const locationPanel = document.getElementById("locationPanel");
-    const locationTitle = document.getElementById("locationTitle");
-    const locationMessage = document.getElementById("locationMessage");
+
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
 
     /* =====================================================
        SCROLL REVEAL
     ===================================================== */
 
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
+    if (
+        reducedMotion ||
+        !("IntersectionObserver" in window)
+    ) {
 
-    if (reducedMotion || !("IntersectionObserver" in window)) {
+        revealElements.forEach(
+            (element) => {
 
-        revealElements.forEach((element) => {
-            element.classList.add("show");
-        });
+                element.classList.add(
+                    "show"
+                );
 
-    } else {
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-
-                entries.forEach((entry) => {
-
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("show");
-                    }
-
-                });
-
-            },
-            {
-                root: null,
-                rootMargin: "0px 0px -8% 0px",
-                threshold: 0.1
             }
         );
 
-        revealElements.forEach((element) => {
-            observer.observe(element);
-        });
+    } else {
+
+        const observer =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "show"
+                                );
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    root: null,
+
+                    rootMargin:
+                        "0px 0px -8% 0px",
+
+                    threshold: 0.1
+                }
+            );
+
+
+        revealElements.forEach(
+            (element) => {
+
+                observer.observe(
+                    element
+                );
+
+            }
+        );
 
     }
 
 
     /* =====================================================
-       DISTANCE CALCULATION
-       Haversine formula
-       ===================================================== */
+       HAVERSINE DISTANCE
 
-    function calculateDistance(lat1, lon1, lat2, lon2) {
+       This gives straight-line distance.
 
-        const earthRadius = 6371;
+       It is NOT road/driving distance.
+    ===================================================== */
 
-        const toRadians = (degrees) => {
-            return degrees * Math.PI / 180;
-        };
+    function calculateDistance(
+        lat1,
+        lon1,
+        lat2,
+        lon2
+    ) {
 
-        const latDiff = toRadians(lat2 - lat1);
-        const lonDiff = toRadians(lon2 - lon1);
+        const earthRadius =
+            6371;
+
+
+        const toRadians =
+            (degrees) =>
+                degrees * Math.PI / 180;
+
+
+        const latitudeDifference =
+            toRadians(
+                lat2 - lat1
+            );
+
+
+        const longitudeDifference =
+            toRadians(
+                lon2 - lon1
+            );
+
 
         const a =
-            Math.sin(latDiff / 2) *
-            Math.sin(latDiff / 2) +
+            Math.sin(
+                latitudeDifference / 2
+            ) ** 2 +
 
-            Math.cos(toRadians(lat1)) *
-            Math.cos(toRadians(lat2)) *
-            Math.sin(lonDiff / 2) *
-            Math.sin(lonDiff / 2);
+            Math.cos(
+                toRadians(lat1)
+            ) *
 
-        const c = 2 * Math.atan2(
-            Math.sqrt(a),
-            Math.sqrt(1 - a)
-        );
+            Math.cos(
+                toRadians(lat2)
+            ) *
+
+            Math.sin(
+                longitudeDifference / 2
+            ) ** 2;
+
+
+        const c =
+            2 *
+            Math.atan2(
+                Math.sqrt(a),
+                Math.sqrt(1 - a)
+            );
+
 
         return earthRadius * c;
+
     }
 
 
     /* =====================================================
        FORMAT DISTANCE
-       ===================================================== */
+    ===================================================== */
 
-    function formatDistance(distance) {
+    function formatDistance(
+        distance
+    ) {
 
-        if (distance < 1) {
-            return `${Math.round(distance * 1000)} m away`;
+        if (
+            distance < 1
+        ) {
+
+            return (
+                Math.round(
+                    distance * 1000
+                ) +
+                " m away"
+            );
+
         }
 
-        return `${distance.toFixed(1)} km away`;
+
+        return (
+            distance.toFixed(1) +
+            " km away"
+        );
+
     }
 
 
     /* =====================================================
        GET USER LOCATION
-       ===================================================== */
+    ===================================================== */
 
     function getUserLocation() {
 
-        return new Promise((resolve, reject) => {
+        return new Promise(
+            (resolve, reject) => {
 
-            if (!navigator.geolocation) {
+                if (
+                    !navigator.geolocation
+                ) {
 
-                reject(
-                    new Error(
-                        "Location is not supported by this browser."
-                    )
+                    reject(
+                        new Error(
+                            "Geolocation is not supported by this browser."
+                        )
+                    );
+
+                    return;
+                }
+
+
+                navigator.geolocation.getCurrentPosition(
+
+                    resolve,
+
+                    reject,
+
+                    {
+                        enableHighAccuracy: true,
+
+                        timeout: 20000,
+
+                        maximumAge: 0
+                    }
+
                 );
 
-                return;
             }
-
-            navigator.geolocation.getCurrentPosition(
-                resolve,
-                reject,
-                {
-                    enableHighAccuracy: true,
-                    timeout: 20000,
-                    maximumAge: 0
-                }
-            );
-
-        });
-
-    }
-
-
-    /* =====================================================
-       PANEL HELPERS
-       ===================================================== */
-
-    function setPanel(title, message) {
-
-        if (locationPanel) {
-            locationPanel.classList.add("active");
-        }
-
-        if (locationTitle) {
-            locationTitle.textContent = title;
-        }
-
-        if (locationMessage) {
-            locationMessage.textContent = message;
-        }
-
-    }
-
-
-    function showLocationError(message) {
-
-        setPanel(
-            "Location unavailable",
-            message
         );
 
     }
 
 
     /* =====================================================
-       READ RESTAURANT COORDINATES
-       ===================================================== */
+       LOCATION PANEL
+    ===================================================== */
 
-    function getRestaurantCoordinates(card) {
+    function setPanel(
+        title,
+        message
+    ) {
 
-        const rawLat = (card.dataset.lat || "").trim();
-        const rawLng = (card.dataset.lng || "").trim();
+        if (
+            locationPanel
+        ) {
 
-        if (rawLat === "" || rawLng === "") {
-            return null;
+            locationPanel.classList.add(
+                "active"
+            );
+
         }
 
-        const latitude = Number(rawLat);
-        const longitude = Number(rawLng);
+
+        if (
+            locationTitle
+        ) {
+
+            locationTitle.textContent =
+                title;
+
+        }
+
+
+        if (
+            locationMessage
+        ) {
+
+            locationMessage.textContent =
+                message;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       GEOCODE RESTAURANT ADDRESS
+
+       We use OpenStreetMap Nominatim.
+
+       The restaurant address is supplied by the HTML card.
+
+       No restaurant coordinates need to be manually
+       inserted into JavaScript.
+    ===================================================== */
+
+    async function geocodeRestaurant(
+        restaurantName,
+        address
+    ) {
+
+        const cacheKey =
+            "namma-kolar-" +
+            restaurantName
+                .toLowerCase()
+                .replace(
+                    /[^a-z0-9]+/g,
+                    "-"
+                );
+
+
+        /* -------------------------------------------------
+           SESSION CACHE
+        ------------------------------------------------- */
+
+        try {
+
+            const cached =
+                sessionStorage.getItem(
+                    cacheKey
+                );
+
+
+            if (
+                cached
+            ) {
+
+                const parsed =
+                    JSON.parse(
+                        cached
+                    );
+
+
+                if (
+                    Number.isFinite(
+                        parsed.latitude
+                    ) &&
+
+                    Number.isFinite(
+                        parsed.longitude
+                    )
+                ) {
+
+                    return parsed;
+
+                }
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Could not read location cache:",
+                error
+            );
+
+        }
+
+
+        /* -------------------------------------------------
+           BUILD SEARCH QUERY
+        ------------------------------------------------- */
+
+        const query =
+            `${restaurantName}, ${address}, Kolar, Karnataka, India`;
+
+
+        const apiURL =
+            "https://nominatim.openstreetmap.org/search" +
+
+            `?format=jsonv2` +
+
+            `&q=${encodeURIComponent(query)}` +
+
+            "&limit=1";
+
+
+        /* -------------------------------------------------
+           REQUEST
+        ------------------------------------------------- */
+
+        const response =
+            await fetch(
+                apiURL,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Restaurant location service is unavailable."
+            );
+
+        }
+
+
+        const results =
+            await response.json();
+
+
+        if (
+            !Array.isArray(results) ||
+            results.length === 0
+        ) {
+
+            throw new Error(
+                "Restaurant location could not be found."
+            );
+
+        }
+
+
+        const latitude =
+            Number(
+                results[0].lat
+            );
+
+
+        const longitude =
+            Number(
+                results[0].lon
+            );
+
 
         if (
             !Number.isFinite(latitude) ||
-            !Number.isFinite(longitude) ||
-            latitude < -90 ||
-            latitude > 90 ||
-            longitude < -180 ||
-            longitude > 180
+            !Number.isFinite(longitude)
         ) {
 
-            return null;
+            throw new Error(
+                "Invalid restaurant coordinates were returned."
+            );
 
         }
 
-        return {
+
+        const result = {
             latitude,
             longitude
         };
 
+
+        /* -------------------------------------------------
+           SAVE CACHE
+        ------------------------------------------------- */
+
+        try {
+
+            sessionStorage.setItem(
+                cacheKey,
+                JSON.stringify(result)
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Could not save location cache:",
+                error
+            );
+
+        }
+
+
+        return result;
+
     }
 
 
     /* =====================================================
-       GET RESTAURANT ADDRESS
-       ===================================================== */
+       GOOGLE MAPS URL
+    ===================================================== */
 
-    function getRestaurantAddress(card) {
-
-        return (card.dataset.address || "").trim();
-
-    }
-
-
-    /* =====================================================
-       OPEN GOOGLE MAPS DIRECTIONS
-       ===================================================== */
-
-    function openDirections(
+    function createGoogleMapsURL(
         userLatitude,
         userLongitude,
-        destination
+        restaurantAddress
     ) {
 
         const origin =
             `${userLatitude},${userLongitude}`;
 
-        const destinationEncoded =
-            encodeURIComponent(destination);
 
-        const mapsURL =
-            `https://www.google.com/maps/dir/?api=1` +
-            `&origin=${origin}` +
-            `&destination=${destinationEncoded}` +
-            `&travelmode=driving`;
+        const params =
+            new URLSearchParams({
 
-        window.open(
-            mapsURL,
-            "_blank",
-            "noopener,noreferrer"
+                api: "1",
+
+                origin: origin,
+
+                destination:
+                    restaurantAddress,
+
+                travelmode: "driving"
+
+            });
+
+
+        return (
+            "https://www.google.com/maps/dir/?" +
+            params.toString()
         );
 
     }
 
 
     /* =====================================================
-       TRACK ONE RESTAURANT ONLY
-       ===================================================== */
+       CREATE DIRECTIONS BUTTON
+    ===================================================== */
 
-    async function trackRestaurant(card, button) {
+    function showDirectionsButton(
+        card,
+        mapsURL
+    ) {
 
-        /*
-         * Disable only the clicked button.
-         * Other restaurants remain available.
-         */
-
-        button.disabled = true;
-
-        card.classList.add("locating");
-
-        const restaurantName =
-            card.querySelector("h3")?.textContent.trim() ||
-            "Restaurant";
-
-        const restaurantAddress =
-            getRestaurantAddress(card);
-
-        const distanceText =
-            card.querySelector(".distance-text");
-
-        const distanceResult =
-            card.querySelector(".distance-result");
+        let directionsContainer =
+            card.querySelector(
+                ".directions-container"
+            );
 
 
-        if (distanceText) {
-            distanceText.textContent =
-                "Finding your location...";
+        /* -------------------------------------------------
+           CREATE CONTAINER
+        ------------------------------------------------- */
+
+        if (
+            !directionsContainer
+        ) {
+
+            directionsContainer =
+                document.createElement(
+                    "div"
+                );
+
+
+            directionsContainer.className =
+                "directions-container";
+
+
+            const restaurantBottom =
+                card.querySelector(
+                    ".restaurant-bottom"
+                );
+
+
+            if (
+                restaurantBottom
+            ) {
+
+                restaurantBottom.appendChild(
+                    directionsContainer
+                );
+
+            } else {
+
+                card.appendChild(
+                    directionsContainer
+                );
+
+            }
+
         }
 
 
-        if (distanceResult) {
-            distanceResult.classList.remove("available");
+        /* -------------------------------------------------
+           REMOVE OLD BUTTON
+        ------------------------------------------------- */
+
+        directionsContainer.innerHTML =
+            "";
+
+
+        /* -------------------------------------------------
+           CREATE LINK
+        ------------------------------------------------- */
+
+        const directionsLink =
+            document.createElement(
+                "a"
+            );
+
+
+        directionsLink.className =
+            "google-directions";
+
+
+        directionsLink.href =
+            mapsURL;
+
+
+        directionsLink.target =
+            "_blank";
+
+
+        directionsLink.rel =
+            "noopener noreferrer";
+
+
+        directionsLink.innerHTML = `
+            <span class="directions-icon">
+                🗺️
+            </span>
+
+            <span>
+                Get Directions
+            </span>
+
+            <span class="directions-arrow">
+                ↗
+            </span>
+        `;
+
+
+        directionsContainer.appendChild(
+            directionsLink
+        );
+
+    }
+
+
+    /* =====================================================
+       SHOW ERROR
+    ===================================================== */
+
+    function showRestaurantError(
+        card,
+        message
+    ) {
+
+        const distanceText =
+            card.querySelector(
+                ".distance-text"
+            );
+
+
+        const distanceResult =
+            card.querySelector(
+                ".distance-result"
+            );
+
+
+        if (
+            distanceText
+        ) {
+
+            distanceText.textContent =
+                message;
+
+        }
+
+
+        if (
+            distanceResult
+        ) {
+
+            distanceResult.classList.add(
+                "available"
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       TRACK ONE RESTAURANT
+    ===================================================== */
+
+    async function trackRestaurant(
+        card,
+        button
+    ) {
+
+        console.log(
+            "Clicked restaurant:",
+            card.dataset.restaurantName
+        );
+
+
+        /* -------------------------------------------------
+           LOCK ONLY THIS BUTTON
+        ------------------------------------------------- */
+
+        button.disabled =
+            true;
+
+
+        card.classList.add(
+            "locating"
+        );
+
+
+        /* -------------------------------------------------
+           GET RESTAURANT DATA
+        ------------------------------------------------- */
+
+        const restaurantName =
+            (
+                card.dataset.restaurantName ||
+                card.querySelector("h3")?.textContent ||
+                "Restaurant"
+            ).trim();
+
+
+        const restaurantAddress =
+            (
+                card.dataset.address ||
+                ""
+            ).trim();
+
+
+        const distanceResult =
+            card.querySelector(
+                ".distance-result"
+            );
+
+
+        const distanceText =
+            card.querySelector(
+                ".distance-text"
+            );
+
+
+        /* -------------------------------------------------
+           REMOVE OLD DIRECTIONS
+        ------------------------------------------------- */
+
+        const oldDirections =
+            card.querySelector(
+                ".directions-container"
+            );
+
+
+        if (
+            oldDirections
+        ) {
+
+            oldDirections.remove();
+
+        }
+
+
+        /* -------------------------------------------------
+           CHECK ADDRESS
+        ------------------------------------------------- */
+
+        if (
+            !restaurantAddress
+        ) {
+
+            showRestaurantError(
+                card,
+                "Address unavailable"
+            );
+
+            button.disabled =
+                false;
+
+            card.classList.remove(
+                "locating"
+            );
+
+            return;
+
+        }
+
+
+        /* -------------------------------------------------
+           LOADING MESSAGE
+        ------------------------------------------------- */
+
+        if (
+            distanceText
+        ) {
+
+            distanceText.textContent =
+                "Finding location...";
+
+        }
+
+
+        if (
+            distanceResult
+        ) {
+
+            distanceResult.classList.add(
+                "available"
+            );
+
         }
 
 
         setPanel(
-            "Finding your location...",
-            `Allow location access to get directions to ${restaurantName}.`
+            "Finding your location",
+            `Please allow location access to calculate your distance to ${restaurantName}.`
         );
 
 
         try {
 
             /* =============================================
-               GET CURRENT USER LOCATION
-               ============================================= */
+               STEP 1
+               GET USER LOCATION
+            ============================================== */
 
             const position =
                 await getUserLocation();
@@ -312,6 +860,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const userLatitude =
                 position.coords.latitude;
+
 
             const userLongitude =
                 position.coords.longitude;
@@ -322,6 +871,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 userLatitude
             );
 
+
             console.log(
                 "User longitude:",
                 userLongitude
@@ -329,174 +879,244 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /* =============================================
-               TRY DISTANCE CALCULATION
-               ONLY FOR CLICKED RESTAURANT
-               ============================================= */
+               STEP 2
+               GEOCODE RESTAURANT
+            ============================================== */
 
-            const restaurantCoordinates =
-                getRestaurantCoordinates(card);
+            if (
+                distanceText
+            ) {
 
-
-            if (restaurantCoordinates) {
-
-                const distance =
-                    calculateDistance(
-                        userLatitude,
-                        userLongitude,
-                        restaurantCoordinates.latitude,
-                        restaurantCoordinates.longitude
-                    );
-
-
-                if (distanceText) {
-
-                    distanceText.textContent =
-                        formatDistance(distance);
-
-                }
-
-
-                if (distanceResult) {
-                    distanceResult.classList.add("available");
-                }
-
-
-                setPanel(
-                    "Location detected",
-                    `${restaurantName} is ${formatDistance(distance)} from your current location.`
-                );
-
-            } else {
-
-                /*
-                 * Coordinates are optional for directions.
-                 * We can still use the restaurant's address
-                 * with Google Maps.
-                 */
-
-                if (distanceText) {
-
-                    distanceText.textContent =
-                        "Location detected";
-
-                }
-
-
-                setPanel(
-                    "Location detected",
-                    `Opening directions to ${restaurantName}.`
-                );
+                distanceText.textContent =
+                    "Finding restaurant...";
 
             }
 
 
-            /* =============================================
-               OPEN DIRECTIONS ONLY FOR THIS RESTAURANT
-               ============================================= */
-
-            if (restaurantAddress) {
-
-                openDirections(
-                    userLatitude,
-                    userLongitude,
+            const restaurantLocation =
+                await geocodeRestaurant(
+                    restaurantName,
                     restaurantAddress
                 );
 
-            } else {
 
-                throw new Error(
-                    "Restaurant address is missing."
+            console.log(
+                "Restaurant coordinates:",
+                restaurantLocation
+            );
+
+
+            /* =============================================
+               STEP 3
+               CALCULATE DISTANCE
+            ============================================== */
+
+            const distance =
+                calculateDistance(
+
+                    userLatitude,
+
+                    userLongitude,
+
+                    restaurantLocation.latitude,
+
+                    restaurantLocation.longitude
+
                 );
 
+
+            const formattedDistance =
+                formatDistance(
+                    distance
+                );
+
+
+            /* =============================================
+               STEP 4
+               SHOW DISTANCE ON SAME CARD
+            ============================================== */
+
+            if (
+                distanceText
+            ) {
+
+                distanceText.textContent =
+                    formattedDistance;
+
             }
+
+
+            setPanel(
+                "Location detected",
+                `${restaurantName} is approximately ${formattedDistance} from your current location.`
+            );
+
+
+            /* =============================================
+               STEP 5
+               CREATE GOOGLE MAPS URL
+            ============================================== */
+
+            const mapsURL =
+                createGoogleMapsURL(
+
+                    userLatitude,
+
+                    userLongitude,
+
+                    restaurantAddress
+
+                );
+
+
+            /* =============================================
+               STEP 6
+               ADD GET DIRECTIONS TO SAME CARD
+            ============================================== */
+
+            showDirectionsButton(
+                card,
+                mapsURL
+            );
+
+
+            /* =============================================
+               STEP 7
+               CHANGE BUTTON TEXT
+            ============================================== */
+
+            const trackText =
+                button.querySelector(
+                    ".track-text"
+                );
+
+
+            if (
+                trackText
+            ) {
+
+                trackText.textContent =
+                    "Location Found";
+
+            }
+
+
+            button.classList.add(
+                "location-found"
+            );
 
 
         } catch (error) {
 
             console.error(
-                "Location error code:",
-                error.code
-            );
-
-            console.error(
-                "Location error message:",
-                error.message
-            );
-
-            console.error(
-                "Full location error:",
+                "Restaurant location error:",
                 error
             );
 
 
-            if (distanceText) {
+            /* =============================================
+               RESET DISTANCE
+            ============================================== */
+
+            if (
+                distanceText
+            ) {
+
                 distanceText.textContent =
                     "Distance unavailable";
-            }
 
-
-            if (distanceResult) {
-                distanceResult.classList.remove("available");
             }
 
 
             /* =============================================
-               PERMISSION DENIED
-               ============================================= */
+               GEOLOCATION ERRORS
+            ============================================== */
 
-            if (error.code === 1) {
+            if (
+                error &&
+                error.code === 1
+            ) {
 
-                showLocationError(
-                    "Location permission was denied. Please allow location access in your browser settings and try again."
+                setPanel(
+                    "Location permission denied",
+                    "Please allow location access for this website in your browser settings and try again."
+                );
+
+                showRestaurantError(
+                    card,
+                    "Allow location access"
                 );
 
             }
 
 
-            /* =============================================
-               POSITION UNAVAILABLE
-               ============================================= */
+            else if (
+                error &&
+                error.code === 2
+            ) {
 
-            else if (error.code === 2) {
+                setPanel(
+                    "Location unavailable",
+                    "Your device could not determine your current location. Turn on Location/GPS and try again."
+                );
 
-                showLocationError(
-                    "Your location could not be determined. Please turn on Location/GPS on your phone and try again."
+                showRestaurantError(
+                    card,
+                    "Location unavailable"
                 );
 
             }
 
 
-            /* =============================================
-               TIMEOUT
-               ============================================= */
+            else if (
+                error &&
+                error.code === 3
+            ) {
 
-            else if (error.code === 3) {
+                setPanel(
+                    "Location timed out",
+                    "The location request took too long. Please try again."
+                );
 
-                showLocationError(
-                    "Location request timed out. Please make sure Location/GPS is enabled and try again."
+                showRestaurantError(
+                    card,
+                    "Try again"
                 );
 
             }
 
-
-            /* =============================================
-               OTHER ERROR
-               ============================================= */
 
             else {
 
-                showLocationError(
-                    error.message ||
-                    "Unable to detect your current location."
+                setPanel(
+                    "Restaurant location unavailable",
+                    error?.message ||
+                    "We could not find this restaurant's location. Please try again."
+                );
+
+                showRestaurantError(
+                    card,
+                    "Location unavailable"
                 );
 
             }
 
-        } finally {
+        }
 
-            card.classList.remove("locating");
 
-            button.disabled = false;
+        /* -------------------------------------------------
+           UNLOCK THIS BUTTON
+        ------------------------------------------------- */
+
+        finally {
+
+            button.disabled =
+                false;
+
+
+            card.classList.remove(
+                "locating"
+            );
 
         }
 
@@ -505,32 +1125,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
        BUTTON EVENTS
-       ===================================================== */
+    ===================================================== */
 
-    restaurantCards.forEach((card) => {
+    restaurantCards.forEach(
+        (card) => {
 
-        const button =
-            card.querySelector(".track-location");
-
-
-        if (!button) {
-            return;
-        }
+            const button =
+                card.querySelector(
+                    ".track-location"
+                );
 
 
-        button.addEventListener(
-            "click",
-            () => {
-                trackRestaurant(card, button);
+            if (
+                !button
+            ) {
+
+                console.warn(
+                    "No location button found for:",
+                    card
+                );
+
+                return;
+
             }
-        );
 
-    });
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    trackRestaurant(
+                        card,
+                        button
+                    );
+
+                }
+            );
+
+        }
+    );
 
 
     /* =====================================================
        HERO IMAGE
-       ===================================================== */
+    ===================================================== */
 
     const heroImage =
         document.querySelector(
@@ -546,9 +1184,15 @@ document.addEventListener("DOMContentLoaded", () => {
         heroImage.addEventListener(
             "load",
             () => {
-                heroImage.classList.add("loaded");
+
+                heroImage.classList.add(
+                    "loaded"
+                );
+
             },
-            { once: true }
+            {
+                once: true
+            }
         );
 
     }

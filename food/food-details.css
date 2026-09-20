@@ -110,10 +110,6 @@ a {
 
     background: #F7E9D5;
 
-    /*
-       Golden interaction border.
-       It is invisible normally and appears when touched/hovered.
-    */
     box-shadow:
         inset 0 0 0 0 transparent;
 
@@ -122,17 +118,11 @@ a {
         transform .3s ease;
 }
 
-
-/* GOLDEN BORDER ON HOVER / TOUCH */
-
 .ragi-hero-image:hover,
 .ragi-hero-image:active {
     box-shadow:
         inset 0 0 0 4px #FACC15;
 }
-
-
-/* Image overlay */
 
 .ragi-hero-image::after {
     content: "";
@@ -152,9 +142,6 @@ a {
 
     z-index: 2;
 }
-
-
-/* IMAGE */
 
 .ragi-hero-image img {
     width: 100%;
@@ -205,11 +192,6 @@ a {
     letter-spacing: 2px;
 }
 
-
-/* =========================================================
-   HERO MAIN TITLE — TWO LOGO COLORS
-========================================================= */
-
 .ragi-hero-content h1 {
     margin-bottom: 16px;
 
@@ -232,9 +214,6 @@ a {
     background-clip: text;
 }
 
-
-/* HERO SHORT DESCRIPTION */
-
 .hero-short {
     max-width: 500px;
 
@@ -245,9 +224,6 @@ a {
     font-size: 17px;
     line-height: 1.6;
 }
-
-
-/* DIVIDER */
 
 .hero-divider {
     width: 52px;
@@ -264,9 +240,6 @@ a {
             var(--logo-yellow)
         );
 }
-
-
-/* ABOUT */
 
 .hero-about {
     max-width: 500px;
@@ -399,8 +372,7 @@ a {
 
 
 /* =========================================================
-   TRADITIONALLY SERVED WITH
-   PREMIUM COMPACT CARDS
+   SERVED SECTION
 ========================================================= */
 
 .served-section {
@@ -417,9 +389,6 @@ a {
 
     gap: 18px;
 }
-
-
-/* CARD */
 
 .served-card {
     position: relative;
@@ -464,9 +433,6 @@ a {
         0 18px 40px rgba(41, 37, 36, .09);
 }
 
-
-/* TOP BRAND LINE */
-
 .served-card::before {
     content: "";
 
@@ -487,9 +453,6 @@ a {
         );
 }
 
-
-/* SOFT DECORATIVE CIRCLE */
-
 .served-card::after {
     content: "";
 
@@ -509,9 +472,6 @@ a {
     pointer-events: none;
 }
 
-
-/* NUMBER */
-
 .served-number {
     position: absolute;
 
@@ -525,9 +485,6 @@ a {
 
     letter-spacing: 1px;
 }
-
-
-/* ICON */
 
 .served-icon {
     width: 45px;
@@ -554,9 +511,6 @@ a {
         0 6px 15px rgba(249, 115, 22, .07);
 }
 
-
-/* CARD TITLE */
-
 .served-card h3 {
     margin-bottom: 7px;
 
@@ -575,9 +529,6 @@ a {
 
     background-clip: text;
 }
-
-
-/* SMALL UNDERLINE */
 
 .served-card h3::after {
     content: "";
@@ -605,9 +556,6 @@ a {
 .served-card:hover h3::after {
     width: 42px;
 }
-
-
-/* DESCRIPTION */
 
 .served-card p {
     max-width: 280px;
@@ -951,15 +899,9 @@ a {
         box-shadow .3s ease;
 }
 
-.track-icon {
-    font-size: 11px;
-}
-
-.track-arrow {
-    font-size: 12px;
-
-    transition:
-        transform .3s ease;
+.track-location:disabled {
+    cursor: wait;
+    opacity: .6;
 }
 
 .track-location:hover {
@@ -975,8 +917,23 @@ a {
         0 7px 17px rgba(249, 115, 22, .16);
 }
 
+.track-icon {
+    font-size: 11px;
+}
+
+.track-arrow {
+    font-size: 12px;
+
+    transition:
+        transform .3s ease;
+}
+
 .track-location:hover .track-arrow {
     transform: translateX(2px);
+}
+
+.track-location.location-found {
+    background: var(--orange-soft);
 }
 
 
@@ -996,39 +953,24 @@ a {
     font-weight: 700;
 
     text-align: right;
+
+    opacity: 1;
 }
 
 .distance-icon {
     font-size: 11px;
 }
 
-.distance-result.available {
-    color: var(--logo-orange);
-}
-
-.distance-result.available .distance-text {
+.distance-text {
     color: var(--logo-orange);
 
-    font-weight: 900;
-}
-
-
-/*
-   IMPORTANT:
-   No grey "Location unavailable".
-*/
-
-.distance-result.unavailable {
-    color: var(--logo-orange);
-}
-
-.distance-result.unavailable .distance-text {
-    color: var(--logo-orange);
     font-weight: 800;
 }
 
 
-/* LOADING */
+/* =========================================================
+   LOADING STATE
+========================================================= */
 
 .restaurant-card.locating .track-location {
     pointer-events: none;
@@ -1038,6 +980,73 @@ a {
 
 .restaurant-card.locating .track-text::after {
     content: "...";
+}
+
+
+/* =========================================================
+   GOOGLE MAPS DIRECTIONS
+========================================================= */
+
+.directions-container {
+    width: 100%;
+
+    margin-top: 12px;
+
+    display: flex;
+}
+
+.google-directions {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 16px;
+
+    border: 1px solid rgba(249, 115, 22, .18);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--logo-orange),
+            var(--logo-purple)
+        );
+
+    color: #FFFFFF;
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        opacity .2s ease,
+        box-shadow .2s ease;
+}
+
+.google-directions:hover {
+    transform: translateY(-2px);
+
+    opacity: .9;
+
+    box-shadow:
+        0 8px 20px rgba(249, 115, 22, .15);
+}
+
+.directions-icon {
+    font-size: 15px;
+}
+
+.directions-arrow {
+    font-size: 14px;
 }
 
 
@@ -1214,6 +1223,7 @@ a {
     .served-grid {
         grid-template-columns: 1fr;
     }
+
 }
 
 
@@ -1230,48 +1240,39 @@ a {
         width: calc(100% - 30px);
     }
 
-
     .ragi-hero {
         margin: 20px auto 60px;
 
         border-radius: 27px 9px 36px 9px;
     }
 
-
     .ragi-hero-image {
         min-height: 275px;
     }
-
 
     .ragi-hero-content {
         padding: 30px 23px 32px;
     }
 
-
     .ragi-hero-content h1 {
         font-size: 40px;
     }
-
 
     .hero-short {
         font-size: 14px;
     }
 
-
     .hero-about {
         font-size: 12px;
     }
-
 
     .section-heading h2 {
         font-size: 29px;
     }
 
-
     .served-grid {
         gap: 14px;
     }
-
 
     .served-card {
         min-height: 175px;
@@ -1279,13 +1280,11 @@ a {
         padding: 23px 21px 21px;
     }
 
-
     .restaurant-grid {
         grid-template-columns: 1fr;
 
         gap: 15px;
     }
-
 
     .restaurant-card {
         min-height: auto;
@@ -1293,18 +1292,15 @@ a {
         padding: 21px 21px 18px;
     }
 
-
     .restaurant-card h3 {
         font-size: 19px;
     }
-
 
     .restaurant-bottom {
         align-items: flex-start;
 
         flex-direction: column;
     }
-
 
     .distance-result {
         width: 100%;
@@ -1314,11 +1310,9 @@ a {
         text-align: left;
     }
 
-
     .location-panel {
         align-items: flex-start;
     }
-
 
     .district-note-inner {
         align-items: flex-start;
@@ -1328,7 +1322,6 @@ a {
         gap: 15px;
     }
 
-
     .district-symbol {
         width: 45px;
         height: 45px;
@@ -1336,10 +1329,10 @@ a {
         font-size: 20px;
     }
 
-
     .district-note h2 {
         font-size: 19px;
     }
+
 }
 
 
@@ -1366,4 +1359,5 @@ a {
         opacity: 1;
         transform: none;
     }
+
 }
