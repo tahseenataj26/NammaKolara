@@ -1,56 +1,49 @@
 /* =========================================================
-   NAMMA KOLAR — RAGI MUDDE DETAIL
+   NAMMA KOLAR — RAGI MUDDE DETAIL PAGE
    Location + Distance
+   Coordinate-Based Version
 ========================================================= */
-
+ 
 document.addEventListener("DOMContentLoaded", () => {
-
+ 
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+ 
     const revealElements = document.querySelectorAll(
         ".ragi-hero, .served-card, .restaurant-card, .district-note"
     );
-
-    const restaurantCards = document.querySelectorAll(
-        ".restaurant-card"
-    );
-
-    const locationPanel =
-        document.getElementById("locationPanel");
-
-    const locationTitle =
-        document.getElementById("locationTitle");
-
-    const locationMessage =
-        document.getElementById("locationMessage");
-
-
+ 
+    const restaurantCards = document.querySelectorAll(".restaurant-card");
+ 
+    const locationPanel = document.getElementById("locationPanel");
+    const locationTitle = document.getElementById("locationTitle");
+    const locationMessage = document.getElementById("locationMessage");
+ 
+ 
     /* =====================================================
        SCROLL REVEAL
     ===================================================== */
-
+ 
     const reducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
     ).matches;
-
-
-    if (reducedMotion) {
-
+ 
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+ 
         revealElements.forEach((element) => {
             element.classList.add("show");
         });
-
+ 
     } else {
-
+ 
         const observer = new IntersectionObserver(
             (entries) => {
-
                 entries.forEach((entry) => {
-
                     if (entry.isIntersecting) {
                         entry.target.classList.add("show");
                     }
-
                 });
-
             },
             {
                 root: null,
@@ -58,479 +51,330 @@ document.addEventListener("DOMContentLoaded", () => {
                 threshold: 0.1
             }
         );
-
-
+ 
         revealElements.forEach((element) => {
             observer.observe(element);
         });
-
+ 
     }
-
-
+ 
+ 
     /* =====================================================
-       DISTANCE CALCULATION
+       DISTANCE CALCULATION (Haversine formula)
+       Straight-line distance, not road distance.
     ===================================================== */
-
-    function calculateDistance(
-        latitude1,
-        longitude1,
-        latitude2,
-        longitude2
-    ) {
-
-        const earthRadius = 6371;
-
-        const degreesToRadians =
-            (degrees) => degrees * Math.PI / 180;
-
-        const latDifference =
-            degreesToRadians(latitude2 - latitude1);
-
-        const lonDifference =
-            degreesToRadians(longitude2 - longitude1);
-
+ 
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+ 
+        const earthRadius = 6371; // km
+ 
+        const toRadians = (degrees) => degrees * Math.PI / 180;
+ 
+        const latDiff = toRadians(lat2 - lat1);
+        const lonDiff = toRadians(lon2 - lon1);
+ 
         const a =
-            Math.sin(latDifference / 2) *
-            Math.sin(latDifference / 2) +
-
-            Math.cos(
-                degreesToRadians(latitude1)
-            ) *
-
-            Math.cos(
-                degreesToRadians(latitude2)
-            ) *
-
-            Math.sin(lonDifference / 2) *
-            Math.sin(lonDifference / 2);
-
-        const c =
-            2 * Math.atan2(
-                Math.sqrt(a),
-                Math.sqrt(1 - a)
-            );
-
+            Math.sin(latDiff / 2) * Math.sin(latDiff / 2) +
+            Math.cos(toRadians(lat1)) *
+            Math.cos(toRadians(lat2)) *
+            Math.sin(lonDiff / 2) * Math.sin(lonDiff / 2);
+ 
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+ 
         return earthRadius * c;
+ 
     }
-
-
+ 
+ 
     /* =====================================================
        FORMAT DISTANCE
     ===================================================== */
-
+ 
     function formatDistance(distance) {
-
+ 
         if (distance < 1) {
-
             return `${Math.round(distance * 1000)} m away`;
-
         }
-
+ 
         return `${distance.toFixed(1)} km away`;
-
+ 
     }
-
-
-    /* =====================================================
-       GEOCODE RESTAURANT
-       OpenStreetMap Nominatim
-    ===================================================== */
-
-    async function geocodeRestaurant(address) {
-
-        const url =
-            "https://nominatim.openstreetmap.org/search?" +
-            new URLSearchParams({
-                q: address,
-                format: "json",
-                limit: "1",
-                countrycodes: "in"
-            });
-
-
-        const response = await fetch(url, {
-            headers: {
-                "Accept": "application/json"
-            }
-        });
-
-
-        if (!response.ok) {
-            throw new Error("Unable to find restaurant location.");
-        }
-
-
-        const results = await response.json();
-
-
-        if (!results.length) {
-            throw new Error("Restaurant location not found.");
-        }
-
-
-        return {
-            latitude: Number(results[0].lat),
-            longitude: Number(results[0].lon)
-        };
-
-    }
-
-
+ 
+ 
     /* =====================================================
        GET USER LOCATION
     ===================================================== */
-
+ 
     function getUserLocation() {
-
-        return new Promise(
-            (resolve, reject) => {
-
-                if (!navigator.geolocation) {
-
-                    reject(
-                        new Error(
-                            "Location is not supported by this browser."
-                        )
-                    );
-
-                    return;
-                }
-
-
-                navigator.geolocation.getCurrentPosition(
-                    resolve,
-                    reject,
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 300000
-                    }
-                );
-
+ 
+        return new Promise((resolve, reject) => {
+ 
+            if (!navigator.geolocation) {
+                reject(new Error("Location is not supported by this browser."));
+                return;
             }
-        );
-
+ 
+            navigator.geolocation.getCurrentPosition(
+                resolve,
+                reject,
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 60000
+                }
+            );
+ 
+        });
+ 
     }
-
-
+ 
+ 
     /* =====================================================
-       SHOW ERROR
+       PANEL HELPERS
     ===================================================== */
-
+ 
+    function setPanel(title, message) {
+ 
+        if (locationPanel) {
+            locationPanel.classList.add("active");
+        }
+ 
+        if (locationTitle) {
+            locationTitle.textContent = title;
+        }
+ 
+        if (locationMessage) {
+            locationMessage.textContent = message;
+        }
+ 
+    }
+ 
     function showLocationError(message) {
-
-        locationPanel.classList.remove("active");
-
-        locationTitle.textContent =
-            "Location unavailable";
-
-        locationMessage.textContent =
-            message;
-
+        setPanel("Location unavailable", message);
     }
-
-
+ 
+ 
     /* =====================================================
-       UPDATE RESTAURANT CARD
+       CARD HELPERS
     ===================================================== */
-
-    function updateRestaurantCard(
-        card,
-        distance
-    ) {
-
-        const distanceResult =
-            card.querySelector(".distance-result");
-
-        const distanceText =
-            card.querySelector(".distance-text");
-
-        distanceText.textContent =
-            formatDistance(distance);
-
-        distanceResult.classList.add(
-            "available"
-        );
-
+ 
+    function setCardDistanceText(card, text, available) {
+ 
+        const distanceResult = card.querySelector(".distance-result");
+        const distanceText = card.querySelector(".distance-text");
+ 
+        if (distanceText) {
+            distanceText.textContent = text;
+        }
+ 
+        if (distanceResult) {
+            distanceResult.classList.toggle("available", Boolean(available));
+        }
+ 
     }
-
-
+ 
+    function resetDistanceCards() {
+ 
+        restaurantCards.forEach((card) => {
+            setCardDistanceText(card, "Calculating...", false);
+        });
+ 
+    }
+ 
+ 
+    /* =====================================================
+       READ RESTAURANT COORDINATES
+       Empty / missing / invalid values return null.
+       (Number("") is 0, so empty values must be caught
+       BEFORE converting, otherwise the coordinates become
+       0,0 and the distance is thousands of km.)
+    ===================================================== */
+ 
+    function getRestaurantCoordinates(card) {
+ 
+        const rawLat = (card.dataset.lat || "").trim();
+        const rawLng = (card.dataset.lng || "").trim();
+ 
+        if (rawLat === "" || rawLng === "") {
+            return null;
+        }
+ 
+        const latitude = Number(rawLat);
+        const longitude = Number(rawLng);
+ 
+        if (
+            !Number.isFinite(latitude) ||
+            !Number.isFinite(longitude) ||
+            latitude < -90 || latitude > 90 ||
+            longitude < -180 || longitude > 180
+        ) {
+            return null;
+        }
+ 
+        return { latitude, longitude };
+ 
+    }
+ 
+ 
     /* =====================================================
        TRACK LOCATION
     ===================================================== */
-
+ 
     async function trackLocation() {
-
-        const buttons =
-            document.querySelectorAll(
-                ".track-location"
-            );
-
-
+ 
+        const buttons = document.querySelectorAll(".track-location");
+ 
         buttons.forEach((button) => {
             button.disabled = true;
         });
-
-
+ 
         restaurantCards.forEach((card) => {
             card.classList.add("locating");
         });
-
-
-        locationPanel.classList.add("active");
-
-        locationTitle.textContent =
-            "Finding your location...";
-
-        locationMessage.textContent =
-            "Please allow location access in your browser.";
-
-
+ 
+        setPanel(
+            "Finding your location...",
+            "Please allow location access in your browser."
+        );
+ 
+        resetDistanceCards();
+ 
         try {
-
-            /* ---------------------------------------------
-               USER LOCATION
-            --------------------------------------------- */
-
-            const position =
-                await getUserLocation();
-
-
-            const userLatitude =
-                position.coords.latitude;
-
-            const userLongitude =
-                position.coords.longitude;
-
-
-            locationTitle.textContent =
-                "Your location detected";
-
-            locationMessage.textContent =
-                "Calculating distance to nearby food spots...";
-
-
-            /* ---------------------------------------------
-               GEOCODE RESTAURANTS
-            --------------------------------------------- */
-
-            const restaurantPromises =
-                Array.from(
-                    restaurantCards
-                ).map(
-                    async (card) => {
-
-                        const address =
-                            card.dataset.address;
-
-                        try {
-
-                            const coordinates =
-                                await geocodeRestaurant(
-                                    address
-                                );
-
-
-                            const distance =
-                                calculateDistance(
-                                    userLatitude,
-                                    userLongitude,
-                                    coordinates.latitude,
-                                    coordinates.longitude
-                                );
-
-
-                            updateRestaurantCard(
-                                card,
-                                distance
-                            );
-
-
-                            return {
-                                card,
-                                distance
-                            };
-
-                        } catch (error) {
-
-                            const distanceText =
-                                card.querySelector(
-                                    ".distance-text"
-                                );
-
-                            distanceText.textContent =
-                                "Location unavailable";
-
-                            return null;
-                        }
-
-                    }
-                );
-
-
-            const results =
-                await Promise.all(
-                    restaurantPromises
-                );
-
-
-            /* ---------------------------------------------
-               SORT BY DISTANCE
-            --------------------------------------------- */
-
-            const validResults =
-                results
-                    .filter(Boolean)
-                    .sort(
-                        (a, b) =>
-                            a.distance - b.distance
-                    );
-
-
-            /* ---------------------------------------------
-               MARK NEAREST
-            --------------------------------------------- */
-
-            restaurantCards.forEach((card) => {
-
-                const oldBadge =
-                    card.querySelector(
-                        ".nearest-badge"
-                    );
-
-                if (oldBadge) {
-                    oldBadge.remove();
-                }
-
-            });
-
-
-            if (validResults.length) {
-
-                const nearestCard =
-                    validResults[0].card;
-
-
-                const badge =
-                    document.createElement(
-                        "span"
-                    );
-
-                badge.className =
-                    "nearest-badge";
-
-                badge.textContent =
-                    "NEAREST TO YOU";
-
-
-                const top =
-                    nearestCard.querySelector(
-                        ".restaurant-top"
-                    );
-
-                top.appendChild(badge);
-
-
-                locationTitle.textContent =
-                    "Distances calculated";
-
-                locationMessage.textContent =
-                    `${validResults.length} restaurant location${validResults.length > 1 ? "s" : ""} found near you.`;
-
-            } else {
-
-                locationTitle.textContent =
-                    "Restaurant locations unavailable";
-
-                locationMessage.textContent =
-                    "We couldn't calculate distances right now.";
-
-            }
-
-
-        } catch (error) {
-
-            console.error(
-                "Location error:",
-                error
+ 
+            /* ---------- GET USER GPS ---------- */
+ 
+            const position = await getUserLocation();
+ 
+            const userLatitude = position.coords.latitude;
+            const userLongitude = position.coords.longitude;
+ 
+            setPanel(
+                "Your location detected",
+                "Calculating distances..."
             );
-
-
+ 
+            /* ---------- CALCULATE DISTANCES ----------
+               No API, no geocoding, no network request. */
+ 
+            let validRestaurantCount = 0;
+ 
+            restaurantCards.forEach((card) => {
+ 
+                const coordinates = getRestaurantCoordinates(card);
+ 
+                if (!coordinates) {
+                    setCardDistanceText(card, "Coordinates not added", false);
+                    return;
+                }
+ 
+                const distance = calculateDistance(
+                    userLatitude,
+                    userLongitude,
+                    coordinates.latitude,
+                    coordinates.longitude
+                );
+ 
+                setCardDistanceText(card, formatDistance(distance), true);
+ 
+                validRestaurantCount++;
+ 
+            });
+ 
+            /* ---------- RESULT MESSAGE ---------- */
+ 
+            if (validRestaurantCount > 0) {
+ 
+                setPanel(
+                    "Distances calculated",
+                    `${validRestaurantCount} restaurant location${
+                        validRestaurantCount > 1 ? "s" : ""
+                    } calculated from your location.`
+                );
+ 
+            } else {
+ 
+                setPanel(
+                    "Restaurant locations unavailable",
+                    "Restaurant coordinates have not been added yet."
+                );
+ 
+            }
+ 
+        } catch (error) {
+ 
+            console.error("Location error:", error);
+ 
+            /* Reset the cards so they don't stay on "Calculating..." */
+            restaurantCards.forEach((card) => {
+                setCardDistanceText(card, "Distance unavailable", false);
+            });
+ 
             if (error.code === 1) {
-
+ 
                 showLocationError(
                     "Location permission was denied. Please allow location access and try again."
                 );
-
+ 
             } else if (error.code === 2) {
-
+ 
                 showLocationError(
-                    "Your location could not be determined. Please try again."
+                    "Your location could not be determined. Please check your device location settings and try again."
                 );
-
+ 
             } else if (error.code === 3) {
-
+ 
                 showLocationError(
                     "Location request timed out. Please try again."
                 );
-
+ 
             } else {
-
+ 
                 showLocationError(
-                    error.message ||
-                    "Unable to detect your location."
+                    error.message || "Unable to detect your location."
                 );
-
+ 
             }
-
+ 
         } finally {
-
+ 
             restaurantCards.forEach((card) => {
                 card.classList.remove("locating");
             });
-
-
+ 
             buttons.forEach((button) => {
                 button.disabled = false;
             });
-
+ 
         }
-
+ 
     }
-
-
+ 
+ 
     /* =====================================================
        BUTTON EVENTS
     ===================================================== */
-
+ 
     restaurantCards.forEach((card) => {
-
-        const button =
-            card.querySelector(
-                ".track-location"
-            );
-
-
-        button.addEventListener(
-            "click",
-            trackLocation
-        );
-
+ 
+        const button = card.querySelector(".track-location");
+ 
+        if (!button) {
+            return;
+        }
+ 
+        button.addEventListener("click", trackLocation);
+ 
     });
-
-
+ 
+ 
     /* =====================================================
        HERO IMAGE
     ===================================================== */
-
-    const heroImage =
-        document.querySelector(
-            ".ragi-hero-image img"
-        );
-
-
+ 
+    const heroImage = document.querySelector(".ragi-hero-image img");
+ 
     if (heroImage && !heroImage.complete) {
-
+ 
         heroImage.addEventListener(
             "load",
             () => {
@@ -538,7 +382,8 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             { once: true }
         );
-
+ 
     }
-
+ 
 });
+ 
