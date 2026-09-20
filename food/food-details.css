@@ -1,0 +1,1092 @@
+/* =========================================================
+   NAMMA KOLAR — RAGI MUDDE DETAIL PAGE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+
+    font-family: Arial, sans-serif;
+
+    background: #FFF9F0;
+    color: #292524;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+.ragi-page {
+    width: 100%;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.ragi-hero {
+    width: min(1140px, calc(100% - 40px));
+
+    margin: 52px auto 78px;
+
+    display: grid;
+    grid-template-columns: 47% 53%;
+
+    min-height: 470px;
+
+    background: #FFFFFF;
+
+    border: 1px solid rgba(41, 37, 36, 0.07);
+
+    border-radius: 36px 12px 46px 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 24px 65px rgba(41, 37, 36, 0.09);
+
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.75s ease,
+        transform 0.75s cubic-bezier(.22,1,.36,1);
+}
+
+.ragi-hero.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* HERO IMAGE */
+
+.ragi-hero-image {
+    position: relative;
+
+    min-height: 470px;
+
+    overflow: hidden;
+
+    background: #F7E9D5;
+}
+
+.ragi-hero-image::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(249,115,22,.08),
+            transparent 65%
+        );
+
+    pointer-events: none;
+}
+
+.ragi-hero-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform .8s ease;
+}
+
+.ragi-hero:hover .ragi-hero-image img {
+    transform: scale(1.035);
+}
+
+
+/* HERO CONTENT */
+
+.ragi-hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 50px 56px;
+}
+
+.food-label {
+    width: fit-content;
+
+    margin-bottom: 15px;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    background: #FFF3E8;
+
+    color: #F97316;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.ragi-hero-content h1 {
+    margin-bottom: 16px;
+
+    font-size: clamp(42px, 5vw, 60px);
+
+    line-height: 1;
+
+    font-weight: 850;
+
+    background:
+        linear-gradient(
+            90deg,
+            #F97316,
+            #C026D3
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+}
+
+.hero-short {
+    max-width: 500px;
+
+    margin-bottom: 20px;
+
+    color: #44403C;
+
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.hero-divider {
+    width: 52px;
+    height: 3px;
+
+    margin-bottom: 20px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #F97316,
+            #FACC15
+        );
+}
+
+.hero-about {
+    max-width: 500px;
+
+    color: #78716C;
+
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+
+/* HERO META */
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 24px;
+
+    margin-top: 28px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+.meta-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #FFF3E8;
+
+    font-size: 16px;
+}
+
+.meta-item small {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #A8A29E;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+.meta-item strong {
+    color: #292524;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+    max-width: 680px;
+
+    margin: 0 auto 38px;
+
+    text-align: center;
+}
+
+.section-tag {
+    display: inline-block;
+
+    margin-bottom: 11px;
+
+    color: #F97316;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 2.2px;
+}
+
+.section-heading h2 {
+    margin-bottom: 11px;
+
+    color: #292524;
+
+    font-size: 36px;
+    font-weight: 850;
+
+    line-height: 1.15;
+}
+
+.section-heading p {
+    color: #78716C;
+
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   SERVED WITH
+========================================================= */
+
+.served-section {
+    width: min(1080px, calc(100% - 40px));
+
+    margin: 0 auto 90px;
+}
+
+.served-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.served-card {
+    position: relative;
+
+    min-height: 245px;
+
+    padding: 29px 27px;
+
+    background: #FFFFFF;
+
+    border: 1px solid rgba(41,37,36,.06);
+
+    border-radius: 25px 10px 32px 10px;
+
+    box-shadow:
+        0 12px 32px rgba(41,37,36,.065);
+
+    opacity: 0;
+    transform: translateY(28px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,1,.36,1),
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+.served-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.served-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(249,115,22,.18);
+
+    box-shadow:
+        0 18px 42px rgba(41,37,36,.10);
+}
+
+.served-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #F97316,
+            #FACC15,
+            #C026D3
+        );
+}
+
+.served-number {
+    position: absolute;
+
+    top: 20px;
+    right: 22px;
+
+    color: #E7E5E4;
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.served-icon {
+    width: 47px;
+    height: 47px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 21px;
+
+    border-radius: 14px;
+
+    background: #FFF3E8;
+
+    font-size: 20px;
+}
+
+.served-card h3 {
+    margin-bottom: 9px;
+
+    color: #292524;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.served-card p {
+    color: #78716C;
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   RESTAURANTS
+========================================================= */
+
+.restaurants-section {
+    width: min(1080px, calc(100% - 40px));
+
+    margin: 0 auto 90px;
+}
+
+.restaurant-heading {
+    margin-bottom: 30px;
+}
+
+
+/* LOCATION PANEL */
+
+.location-panel {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    margin-bottom: 25px;
+
+    padding: 14px 18px;
+
+    border: 1px solid rgba(249,115,22,.12);
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,243,232,.9),
+            rgba(255,251,234,.9)
+        );
+
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.location-panel.active {
+    border-color: rgba(249,115,22,.25);
+
+    box-shadow:
+        0 8px 25px rgba(249,115,22,.07);
+}
+
+.location-panel-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    margin-right: 12px;
+
+    border-radius: 12px;
+
+    background: #FFFFFF;
+
+    font-size: 16px;
+}
+
+.location-panel-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.location-panel-content strong {
+    color: #292524;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.location-panel-content span {
+    color: #78716C;
+
+    font-size: 10px;
+}
+
+
+/* RESTAURANT GRID */
+
+.restaurant-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* SMALLER CARD */
+
+.restaurant-card {
+    position: relative;
+
+    padding: 23px 24px 20px;
+
+    min-height: 285px;
+
+    background: #FFFFFF;
+
+    border: 1px solid rgba(41,37,36,.065);
+
+    border-radius: 22px 9px 29px 9px;
+
+    box-shadow:
+        0 10px 28px rgba(41,37,36,.06);
+
+    opacity: 0;
+    transform: translateY(28px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,1,.36,1),
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+.restaurant-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(249,115,22,.18);
+
+    box-shadow:
+        0 18px 40px rgba(41,37,36,.09);
+}
+
+
+/* RESTAURANT TOP */
+
+.restaurant-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 17px;
+}
+
+.restaurant-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFF3E8,
+            #FFFBEA
+        );
+
+    font-size: 18px;
+}
+
+.restaurant-type {
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    background: #FFF3E8;
+
+    color: #F97316;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+/* RESTAURANT TEXT */
+
+.restaurant-card h3 {
+    margin-bottom: 5px;
+
+    color: #292524;
+
+    font-size: 20px;
+    font-weight: 850;
+}
+
+.restaurant-location {
+    margin-bottom: 11px;
+
+    color: #A8A29E;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.restaurant-description {
+    margin-bottom: 13px;
+
+    color: #78716C;
+
+    font-size: 11.5px;
+    line-height: 1.65;
+}
+
+
+/* FOOD TAGS */
+
+.restaurant-food {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin-bottom: 17px;
+}
+
+.restaurant-food span {
+    padding: 5px 8px;
+
+    border: 1px solid #E7E5E4;
+
+    border-radius: 999px;
+
+    background: #FAFAF9;
+
+    color: #57534E;
+
+    font-size: 8.5px;
+    font-weight: 700;
+}
+
+
+/* RESTAURANT BOTTOM */
+
+.restaurant-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #F1F0EE;
+}
+
+
+/* TRACK BUTTON */
+
+.track-location {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 11px;
+
+    border: 1px solid rgba(249,115,22,.18);
+
+    border-radius: 999px;
+
+    background: #FFF9F0;
+
+    color: #F97316;
+
+    font-size: 9.5px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.track-icon {
+    font-size: 11px;
+}
+
+.track-arrow {
+    font-size: 12px;
+
+    transition:
+        transform .3s ease;
+}
+
+.track-location:hover {
+    background: #F97316;
+
+    color: #FFFFFF;
+
+    border-color: #F97316;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 17px rgba(249,115,22,.16);
+}
+
+.track-location:hover .track-arrow {
+    transform: translateX(2px);
+}
+
+
+/* DISTANCE */
+
+.distance-result {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: #A8A29E;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-align: right;
+}
+
+.distance-icon {
+    font-size: 11px;
+}
+
+.distance-result.available {
+    color: #57534E;
+}
+
+.distance-result.available .distance-text {
+    color: #F97316;
+
+    font-weight: 800;
+}
+
+
+/* LOADING */
+
+.restaurant-card.locating .track-location {
+    pointer-events: none;
+
+    opacity: .65;
+}
+
+.restaurant-card.locating .track-text::after {
+    content: "...";
+}
+
+
+/* =========================================================
+   DISTRICT NOTE
+========================================================= */
+
+.district-note {
+    width: min(1020px, calc(100% - 40px));
+
+    margin: 0 auto 65px;
+
+    opacity: 0;
+    transform: translateY(28px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+.district-note.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.district-note-inner {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 31px 35px;
+
+    border: 1px solid rgba(249,115,22,.09);
+
+    border-radius: 27px 9px 34px 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFF3E8,
+            #FFFBEA
+        );
+}
+
+.district-symbol {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    border-radius: 17px;
+
+    background: #FFFFFF;
+
+    font-size: 24px;
+
+    box-shadow:
+        0 8px 20px rgba(41,37,36,.06);
+}
+
+.district-note-inner > div:last-child span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #F97316;
+
+    font-size: 8px;
+    font-weight: 900;
+
+    letter-spacing: 1.8px;
+}
+
+.district-note h2 {
+    margin-bottom: 6px;
+
+    color: #292524;
+
+    font-size: 22px;
+    font-weight: 850;
+}
+
+.district-note p {
+    color: #78716C;
+
+    font-size: 11.5px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.back-section {
+    padding: 0 20px 70px;
+
+    text-align: center;
+}
+
+.back-food {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    border: 1px solid rgba(249,115,22,.18);
+
+    border-radius: 999px;
+
+    background: #FFFFFF;
+
+    color: #F97316;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.back-food:hover {
+    background: #F97316;
+
+    color: #FFFFFF;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(249,115,22,.17);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .ragi-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .ragi-hero-image {
+        min-height: 370px;
+    }
+
+    .ragi-hero-content {
+        padding: 42px;
+    }
+
+    .served-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .ragi-hero,
+    .served-section,
+    .restaurants-section,
+    .district-note {
+        width: calc(100% - 30px);
+    }
+
+
+    .ragi-hero {
+        margin: 20px auto 60px;
+
+        border-radius: 27px 9px 36px 9px;
+    }
+
+    .ragi-hero-image {
+        min-height: 275px;
+    }
+
+    .ragi-hero-content {
+        padding: 30px 23px 32px;
+    }
+
+    .ragi-hero-content h1 {
+        font-size: 40px;
+    }
+
+    .hero-short {
+        font-size: 14px;
+    }
+
+    .hero-about {
+        font-size: 12px;
+    }
+
+
+    .section-heading h2 {
+        font-size: 29px;
+    }
+
+
+    .restaurant-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+    .restaurant-card {
+        min-height: auto;
+
+        padding: 21px 21px 18px;
+    }
+
+    .restaurant-card h3 {
+        font-size: 19px;
+    }
+
+
+    .restaurant-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .distance-result {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        text-align: left;
+    }
+
+
+    .location-panel {
+        align-items: flex-start;
+    }
+
+
+    .district-note-inner {
+        align-items: flex-start;
+
+        padding: 25px 22px;
+
+        gap: 15px;
+    }
+
+    .district-symbol {
+        width: 45px;
+        height: 45px;
+
+        font-size: 20px;
+    }
+
+    .district-note h2 {
+        font-size: 19px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+
+    .ragi-hero,
+    .served-card,
+    .restaurant-card,
+    .district-note {
+        opacity: 1;
+        transform: none;
+    }
+
+}

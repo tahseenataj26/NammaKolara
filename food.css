@@ -1,0 +1,570 @@
+/* =========================================
+   NAMMA KOLAR — FOOD PAGE
+========================================= */
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #FFF9F0;
+    color: #292524;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.food-intro {
+    text-align: center;
+    padding: 75px 20px 45px;
+}
+
+.intro-tag {
+    display: inline-block;
+    margin-bottom: 14px;
+
+    color: #F97316;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.food-intro h1 {
+    margin-bottom: 15px;
+
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.15;
+
+    background: linear-gradient(
+        90deg,
+        #F97316,
+        #C026D3
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.food-intro p {
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    color: #645955;
+
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   FOOD GRID
+========================================= */
+
+.food-grid {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding: 30px 25px 80px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 35px;
+}
+
+
+/* =========================================
+   FOOD CARD
+========================================= */
+
+.food-card {
+    position: relative;
+
+    width: 100%;
+    min-height: 285px;
+
+    display: grid;
+
+    grid-template-columns: 48% 52%;
+
+    background: #FFFFFF;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(41, 37, 36, 0.07);
+
+    box-shadow:
+        0 12px 32px rgba(41, 37, 36, 0.09);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+
+/* =========================================
+   ASYMMETRIC CARD SHAPES
+========================================= */
+
+.food-card.image-left {
+    border-radius: 32px 10px 38px 10px;
+}
+
+.food-card.image-right {
+    border-radius: 10px 32px 10px 38px;
+}
+
+
+.food-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #FACC15;
+
+    box-shadow:
+        0 20px 42px rgba(41, 37, 36, 0.14);
+}
+
+
+/* =========================================
+   FOOD IMAGE
+========================================= */
+
+.food-image {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 285px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #F97316,
+            #FACC15 50%,
+            #C026D3
+        );
+}
+
+
+/* Left image */
+
+.image-left .food-image {
+    border-radius: 30px 5px 5px 8px;
+}
+
+
+/* Right image */
+
+.image-right .food-image {
+    border-radius: 5px 30px 8px 5px;
+}
+
+
+.food-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.6s ease;
+}
+
+
+.food-card:hover .food-image img {
+    transform: scale(1.06);
+}
+
+
+/* =========================================
+   IMAGE OVERLAY
+========================================= */
+
+.food-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(249, 115, 22, 0.04),
+            transparent 60%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.food-content {
+    padding: 30px 28px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.food-category {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    background: #FFF3E8;
+
+    color: #F97316;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   FOOD TITLE
+========================================= */
+
+.food-content h2 {
+    margin-bottom: 10px;
+
+    color: #292524;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.food-description {
+    max-width: 250px;
+
+    margin-bottom: 18px;
+
+    color: #57534E;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   DETAILS LINK
+========================================= */
+
+.view-details {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: auto;
+
+    color: #F97316;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease,
+        gap 0.3s ease;
+}
+
+.view-details span {
+    font-size: 16px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.view-details:hover {
+    color: #C026D3;
+
+    gap: 10px;
+}
+
+.view-details:hover span {
+    transform: translateX(3px);
+}
+
+
+/* =========================================
+   SCROLL ANIMATION
+========================================= */
+
+.food-card {
+    opacity: 0;
+
+    transform:
+        translateY(45px)
+        scale(0.97);
+
+    transition:
+        opacity 0.75s ease,
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.food-card.show {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================
+   SLIDE IMAGE + CONTENT
+========================================= */
+
+.food-card .food-image {
+    opacity: 0;
+
+    transform: translateX(-25px);
+
+    transition:
+        opacity 0.8s ease 0.12s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.food-card.image-right .food-image {
+    transform: translateX(25px);
+}
+
+
+.food-card .food-content {
+    opacity: 0;
+
+    transform: translateX(25px);
+
+    transition:
+        opacity 0.8s ease 0.22s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.food-card.image-right .food-content {
+    transform: translateX(-25px);
+}
+
+
+.food-card.show .food-image,
+.food-card.show .food-content {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+/* =========================================
+   STAGGER ANIMATION
+========================================= */
+
+.food-card:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.food-card:nth-child(2) {
+    transition-delay: 0.12s;
+}
+
+.food-card:nth-child(3) {
+    transition-delay: 0.18s;
+}
+
+.food-card:nth-child(4) {
+    transition-delay: 0.24s;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 950px) {
+
+    .food-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 700px;
+
+        gap: 30px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .food-intro {
+        padding: 60px 20px 35px;
+    }
+
+    .food-intro h1 {
+        font-size: 34px;
+    }
+
+    .food-intro p {
+        font-size: 16px;
+    }
+
+
+    .food-grid {
+        grid-template-columns: 1fr;
+
+        padding: 20px 15px 55px;
+
+        gap: 25px;
+    }
+
+
+    .food-card,
+    .food-card.image-left,
+    .food-card.image-right {
+        display: flex;
+
+        flex-direction: column;
+
+        min-height: auto;
+
+        border-radius: 28px 10px 40px 10px;
+    }
+
+
+    .food-image,
+    .image-left .food-image,
+    .image-right .food-image {
+        width: 100%;
+
+        height: 230px;
+        min-height: 230px;
+
+        border-radius: 26px 8px 8px 0;
+    }
+
+
+    .food-content {
+        padding: 27px 25px 30px;
+    }
+
+
+    .food-content h2 {
+        font-size: 26px;
+    }
+
+
+    .food-description {
+        max-width: 100%;
+
+        font-size: 14px;
+    }
+
+
+    /* Mobile animation */
+
+    .food-card .food-image,
+    .food-card.image-right .food-image {
+        transform: translateY(25px);
+    }
+
+    .food-card .food-content,
+    .food-card.image-right .food-content {
+        transform: translateY(25px);
+    }
+
+
+    .food-card.show .food-image,
+    .food-card.show .food-content {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .food-card,
+    .food-card .food-image,
+    .food-card .food-content,
+    .food-image img,
+    .view-details,
+    .view-details span {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .food-card,
+    .food-card .food-image,
+    .food-card .food-content {
+        opacity: 1;
+    }
+
+}
