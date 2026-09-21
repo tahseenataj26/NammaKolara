@@ -1,5 +1,11 @@
 /* =========================================================
-   NAMMA KOLAR — RAGI MUDDE DETAIL PAGE
+   NAMMA KOLAR — FOOD DETAIL PAGES
+   Reusable CSS for all food detail pages
+========================================================= */
+
+
+/* =========================================================
+   RESET
 ========================================================= */
 
 * {
@@ -28,7 +34,12 @@ a {
     font-family: inherit;
 }
 
-.ragi-page {
+
+/* =========================================================
+   FOOD PAGE
+========================================================= */
+
+.food-page {
     width: 100%;
 }
 
@@ -56,7 +67,7 @@ a {
    HERO
 ========================================================= */
 
-.ragi-hero {
+.food-hero {
     width: min(1140px, calc(100% - 40px));
 
     margin: 52px auto 78px;
@@ -86,12 +97,12 @@ a {
         box-shadow .35s ease;
 }
 
-.ragi-hero.show {
+.food-hero.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-.ragi-hero:hover {
+.food-hero:hover {
     box-shadow:
         0 28px 75px rgba(41, 37, 36, .11);
 }
@@ -101,7 +112,7 @@ a {
    HERO IMAGE
 ========================================================= */
 
-.ragi-hero-image {
+.food-hero-image {
     position: relative;
 
     min-height: 470px;
@@ -118,13 +129,13 @@ a {
         transform .3s ease;
 }
 
-.ragi-hero-image:hover,
-.ragi-hero-image:active {
+.food-hero-image:hover,
+.food-hero-image:active {
     box-shadow:
         inset 0 0 0 4px #FACC15;
 }
 
-.ragi-hero-image::after {
+.food-hero-image::after {
     content: "";
 
     position: absolute;
@@ -143,7 +154,7 @@ a {
     z-index: 2;
 }
 
-.ragi-hero-image img {
+.food-hero-image img {
     width: 100%;
     height: 100%;
 
@@ -156,7 +167,7 @@ a {
         transform .8s cubic-bezier(.22,1,.36,1);
 }
 
-.ragi-hero-image:hover img {
+.food-hero-image:hover img {
     transform: scale(1.035);
 }
 
@@ -165,13 +176,18 @@ a {
    HERO CONTENT
 ========================================================= */
 
-.ragi-hero-content {
+.food-hero-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     padding: 50px 56px;
 }
+
+
+/* =========================================================
+   FOOD LABEL
+========================================================= */
 
 .food-label {
     width: fit-content;
@@ -192,7 +208,12 @@ a {
     letter-spacing: 2px;
 }
 
-.ragi-hero-content h1 {
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.food-hero-content h1 {
     margin-bottom: 16px;
 
     font-size: clamp(42px, 5vw, 60px);
@@ -214,6 +235,11 @@ a {
     background-clip: text;
 }
 
+
+/* =========================================================
+   HERO SHORT DESCRIPTION
+========================================================= */
+
 .hero-short {
     max-width: 500px;
 
@@ -224,6 +250,11 @@ a {
     font-size: 17px;
     line-height: 1.6;
 }
+
+
+/* =========================================================
+   HERO DIVIDER
+========================================================= */
 
 .hero-divider {
     width: 52px;
@@ -240,6 +271,11 @@ a {
             var(--logo-yellow)
         );
 }
+
+
+/* =========================================================
+   HERO ABOUT
+========================================================= */
 
 .hero-about {
     max-width: 500px;
@@ -390,6 +426,11 @@ a {
     gap: 18px;
 }
 
+
+/* =========================================================
+   SERVED CARD
+========================================================= */
+
 .served-card {
     position: relative;
 
@@ -401,10 +442,10 @@ a {
 
     border: 1px solid rgba(41, 37, 36, .065);
 
-    border-radius: 24px 9px 28px 9px;
+    border-radius: 18px;
 
     box-shadow:
-        0 10px 30px rgba(41, 37, 36, .055);
+        0 5px 30px rgba(41, 37, 36, .055);
 
     overflow: hidden;
 
@@ -867,7 +908,7 @@ a {
 
 
 /* =========================================================
-   TRACK LOCATION
+   GET DIRECTIONS BUTTON
 ========================================================= */
 
 .track-location {
@@ -938,7 +979,7 @@ a {
 
 
 /* =========================================================
-   DISTANCE
+   DISTANCE / LOCATION RESULT
 ========================================================= */
 
 .distance-result {
@@ -984,7 +1025,8 @@ a {
 
 
 /* =========================================================
-   GOOGLE MAPS DIRECTIONS
+   OLD GOOGLE MAPS DIRECTIONS
+   Kept here in case needed later
 ========================================================= */
 
 .directions-container {
@@ -1208,22 +1250,21 @@ a {
 
 @media (max-width: 850px) {
 
-    .ragi-hero {
+    .food-hero {
         grid-template-columns: 1fr;
     }
 
-    .ragi-hero-image {
+    .food-hero-image {
         min-height: 370px;
     }
 
-    .ragi-hero-content {
+    .food-hero-content {
         padding: 42px;
     }
 
     .served-grid {
         grid-template-columns: 1fr;
     }
-
 }
 
 
@@ -1233,28 +1274,28 @@ a {
 
 @media (max-width: 600px) {
 
-    .ragi-hero,
+    .food-hero,
     .served-section,
     .restaurants-section,
     .district-note {
         width: calc(100% - 30px);
     }
 
-    .ragi-hero {
+    .food-hero {
         margin: 20px auto 60px;
 
         border-radius: 27px 9px 36px 9px;
     }
 
-    .ragi-hero-image {
+    .food-hero-image {
         min-height: 275px;
     }
 
-    .ragi-hero-content {
+    .food-hero-content {
         padding: 30px 23px 32px;
     }
 
-    .ragi-hero-content h1 {
+    .food-hero-content h1 {
         font-size: 40px;
     }
 
@@ -1332,7 +1373,6 @@ a {
     .district-note h2 {
         font-size: 19px;
     }
-
 }
 
 
@@ -1352,12 +1392,26 @@ a {
         transition: none !important;
     }
 
-    .ragi-hero,
+    .food-hero,
     .served-card,
     .restaurant-card,
     .district-note {
         opacity: 1;
         transform: none;
     }
+}
 
+
+/* =========================================================
+   LOCATION BUTTON LOADING STATE
+========================================================= */
+
+.track-location:disabled {
+    cursor: wait;
+
+    opacity: 0.65;
+}
+
+.restaurant-card.locating .track-location {
+    opacity: 0.65;
 }
