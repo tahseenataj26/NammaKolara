@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Report a Problem | Namma Kolar</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="report-problem.css"
+    >
+</head>
+
+<body>
+
+    <main class="report-page">
+
+        <!-- LEFT SIDE -->
+        <section class="report-intro">
+
+            <span class="eyebrow">
+                REPORT A PROBLEM
+            </span>
+
+            <h1>
+                Help make
+                <span>Kolar better.</span>
+            </h1>
+
+            <p class="intro-text">
+                Spotted something that needs attention?
+                Share the details and help make your
+                community cleaner, safer and better.
+            </p>
+
+
+            <!-- BENEFITS -->
+            <div class="benefits">
+
+                <div class="benefit">
+                    <div class="benefit-icon">✓</div>
+
+                    <div>
+                        <strong>Quick to report</strong>
+                        <span>Share an issue in just a few steps.</span>
+                    </div>
+                </div>
+
+
+                <div class="benefit">
+                    <div class="benefit-icon">⌖</div>
+
+                    <div>
+                        <strong>Easy to locate</strong>
+                        <span>Tell us exactly where the issue is.</span>
+                    </div>
+                </div>
+
+
+                <div class="benefit">
+                    <div class="benefit-icon">◈</div>
+
+                    <div>
+                        <strong>Add visual evidence</strong>
+                        <span>A photo can help explain the issue.</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+        <section class="report-card">
+
+            <div class="card-top-line"></div>
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="card-label">
+                        COMMUNITY REPORT
+                    </span>
+
+                    <h2>
+                        Report an issue
+                    </h2>
+
+                    <p>
+                        Tell us what happened and where it happened.
+                    </p>
+
+                </div>
+
+                <div class="card-symbol">
+                    ✦
+                </div>
+
+            </div>
+
+        <div class="form-area">
+
+    <!-- PROGRESS -->
+    <div class="form-progress">
+
+        <div class="progress-step active">
+            <span>01</span>
+            <small>Problem</small>
+        </div>
+
+        <div class="progress-line"></div>
+
+        <div class="progress-step">
+            <span>02</span>
+            <small>Details</small>
+        </div>
+
+        <div class="progress-line"></div>
+
+        <div class="progress-step">
+            <span>03</span>
+            <small>Submit</small>
+        </div>
+
+    </div>
+
+
+    <!-- STEP 1 -->
+    <div class="form-step active" id="step1">
+
+        <div class="step-heading">
+
+            <span class="step-eyebrow">
+                STEP 01
+            </span>
+
+            <h3>
+                What type of problem?
+            </h3>
+
+            <p>
+                Choose the option that best describes the issue.
+            </p>
+
+        </div>
+
+
+        <div class="problem-options">
+
+            <button
+                type="button"
+                class="problem-option"
+                data-value="Road / Pothole"
+            >
+                <span class="option-icon road">⌁</span>
+
+                <span class="option-text">
+                    <strong>Road / Pothole</strong>
+                    <small>Damaged roads or potholes</small>
+                </span>
+
+                <span class="option-arrow">→</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="problem-option"
+                data-value="Streetlight"
+            >
+                <span class="option-icon light">✦</span>
+
+                <span class="option-text">
+                    <strong>Streetlight</strong>
+                    <small>Broken or missing lights</small>
+                </span>
+
+                <span class="option-arrow">→</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="problem-option"
+                data-value="Garbage"
+            >
+                <span class="option-icon garbage">◇</span>
+
+                <span class="option-text">
+                    <strong>Garbage</strong>
+                    <small>Waste or cleanliness issues</small>
+                </span>
+
+                <span class="option-arrow">→</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="problem-option"
+                data-value="Water Supply"
+            >
+                <span class="option-icon water">≈</span>
+
+                <span class="option-text">
+                    <strong>Water Supply</strong>
+                    <small>Water-related problems</small>
+                </span>
+
+                <span class="option-arrow">→</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="problem-option"
+                data-value="Drainage"
+            >
+                <span class="option-icon drainage">⌇</span>
+
+                <span class="option-text">
+                    <strong>Drainage</strong>
+                    <small>Blocked or damaged drainage</small>
+                </span>
+
+                <span class="option-arrow">→</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="problem-option"
+                data-value="Other"
+            >
+                <span class="option-icon other">+</span>
+
+                <span class="option-text">
+                    <strong>Other</strong>
+                    <small>Something else needs attention</small>
+                </span>
+
+                <span class="option-arrow">→</span>
+            </button>
+
+        </div>
+
+
+        <div class="step-navigation">
+
+            <span class="selection-hint">
+                Select an option to continue
+            </span>
+
+            <button
+                type="button"
+                class="next-button"
+                id="nextStep"
+                disabled
+            >
+                Continue
+                <span>→</span>
+            </button>
+
+        </div>
+
+    </div>
+<!-- STEP 2 -->
+<div class="form-step" id="step2">
+
+    <div class="step-heading">
+
+        <span class="step-eyebrow">
+            STEP 02
+        </span>
+
+        <h3>
+            Tell us where it is
+        </h3>
+
+        <p>
+            Help us understand the location and what is happening.
+        </p>
+
+    </div>
+
+
+    <!-- LOCATION -->
+    <div class="report-field">
+
+        <label for="problemLocation">
+            Problem location
+        </label>
+
+        <div class="field-input">
+
+            <span class="field-icon">⌖</span>
+
+            <input
+                type="text"
+                id="problemLocation"
+                placeholder="Enter area, street or location"
+                autocomplete="street-address"
+            >
+
+            <button
+                type="button"
+                class="location-button"
+                id="useLocation"
+            >
+                Use my location
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- LANDMARK -->
+    <div class="report-field">
+
+        <label for="problemLandmark">
+            Nearby landmark
+            <span>Optional</span>
+        </label>
+
+        <div class="field-input">
+
+            <span class="field-icon">◇</span>
+
+            <input
+                type="text"
+                id="problemLandmark"
+                placeholder="Example: Near KSRTC Bus Stand"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- DESCRIPTION -->
+    <div class="report-field description-field">
+
+        <div class="description-label">
+
+            <label for="problemDescription">
+                What happened?
+            </label>
+
+            <span id="descriptionCount">
+                0 / 500
+            </span>
+
+        </div>
+
+        <div class="textarea-container">
+
+            <textarea
+                id="problemDescription"
+                maxlength="500"
+                rows="4"
+                placeholder="Describe the problem clearly..."
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <div class="step-navigation">
+
+        <button
+            type="button"
+            class="back-button"
+            id="backStep"
+        >
+            <span>←</span>
+            Back
+        </button>
+
+
+        <button
+            type="button"
+            class="next-button"
+            id="nextStep2"
+        >
+            Continue
+            <span>→</span>
+        </button>
+
+    </div>
+
+</div>
+
+                <!-- STEP 3 -->
+<div class="form-step" id="step3">
+
+    <div class="step-heading">
+
+        <span class="step-eyebrow">
+            STEP 03
+        </span>
+
+        <h3>
+            Add the final details
+        </h3>
+
+        <p>
+            Add a photo and contact details so we can understand your report better.
+        </p>
+
+    </div>
+
+
+    <!-- PHOTO UPLOAD -->
+    <div class="report-field">
+
+        <label>
+            Add a photo
+            <span>Optional</span>
+        </label>
+
+        <div
+            class="photo-upload"
+            id="photoUpload"
+        >
+
+            <input
+                type="file"
+                id="problemPhoto"
+                accept="image/*"
+                hidden
+            >
+
+            <div
+                class="photo-upload-content"
+                id="photoUploadContent"
+            >
+
+                <div class="upload-icon">
+                    +
+                </div>
+
+                <div class="upload-text">
+                    <strong>
+                        Add a photo
+                    </strong>
+
+                    <span>
+                        JPG, PNG or WEBP
+                    </span>
+                </div>
+
+            </div>
+
+            <img
+                id="photoPreview"
+                class="photo-preview"
+                alt="Selected problem photo"
+            >
+
+            <button
+                type="button"
+                class="remove-photo"
+                id="removePhoto"
+                aria-label="Remove photo"
+            >
+                ×
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTACT DETAILS -->
+    <div class="contact-grid">
+
+        <div class="report-field">
+
+            <label for="reporterName">
+                Your name
+            </label>
+
+            <div class="field-input">
+
+                <span class="field-icon">
+                    ◯
+                </span>
+
+                <input
+                    type="text"
+                    id="reporterName"
+                    placeholder="Enter your name"
+                    autocomplete="name"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="report-field">
+
+            <label for="reporterPhone">
+                Phone number
+            </label>
+
+            <div class="field-input">
+
+                <span class="field-icon">
+                    ☎
+                </span>
+
+                <input
+                    type="tel"
+                    id="reporterPhone"
+                    placeholder="Enter phone number"
+                    autocomplete="tel"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="report-field">
+
+        <label for="reporterEmail">
+            Email address
+            <span>Optional</span>
+        </label>
+
+        <div class="field-input">
+
+            <span class="field-icon">
+                @
+            </span>
+
+            <input
+                type="email"
+                id="reporterEmail"
+                placeholder="Enter your email"
+                autocomplete="email"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- REPORT SUMMARY -->
+    <div class="report-summary">
+
+        <div class="summary-header">
+
+            <span>
+                REPORT SUMMARY
+            </span>
+
+        </div>
+
+        <div class="summary-item">
+
+            <span>
+                Problem
+            </span>
+
+            <strong id="summaryProblem">
+                —
+            </strong>
+
+        </div>
+
+        <div class="summary-item">
+
+            <span>
+                Location
+            </span>
+
+            <strong id="summaryLocation">
+                —
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <div class="step-navigation">
+
+        <button
+            type="button"
+            class="back-button"
+            id="backStep3"
+        >
+            <span>←</span>
+            Back
+        </button>
+
+
+        <button
+            type="button"
+            class="next-button submit-button"
+            id="submitReport"
+        >
+            Submit Report
+            <span>→</span>
+        </button>
+
+    </div>
+
+</div>
+</div>
+<div class="report-success" id="reportSuccess">
+
+    <div class="success-content">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h3>
+            Report submitted
+        </h3>
+
+        <p>
+            Thank you for helping make Kolar better.
+            Your report has been collected successfully.
+        </p>
+
+        <button
+            type="button"
+            class="next-button success-button"
+            id="newReport"
+        >
+            Report Another Issue
+            <span>→</span>
+        </button>
+
+    </div>
+
+</div>
+</section>
+
+    </main>
+
+
+    <script src="report-problem.js"></script>
+
+</body>
+</html>
