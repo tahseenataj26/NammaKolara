@@ -16,7 +16,7 @@ const D = [
 
         l: "Explore Healthcare",
 
-        h: "#healthcare"
+        h: "hospital.html"
     },
 
 

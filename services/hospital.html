@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover"
+    >
+
+    <title>Namma Kolara - Healthcare</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="hospital.css"
+    >
+</head>
+
+<body>
+
+    <!-- =================================================
+         NAVBAR
+    ================================================= -->
+
+    <nav
+        class="navbar"
+        role="navigation"
+        aria-label="Main navigation"
+    >
+
+        <a
+            href="../index.html#home"
+            class="logo"
+        >
+            <img
+                src="../assets/logo.png"
+                alt="Namma Kolar logo"
+            >
+        </a>
+
+        <div class="nav-links">
+
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#explore">Explore</a>
+            <a href="../index.html#updates">Updates</a>
+            <a href="../index.html#events">Events</a>
+            <a href="../index.html#contact">Contact Us</a>
+
+        </div>
+
+        <a
+            href="../index.html#report"
+            class="report-btn"
+        >
+            Report Problem
+        </a>
+
+        <button
+            class="menu-toggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
+
+
+        <!-- MOBILE MENU -->
+
+        <div
+            class="mobile-menu"
+            aria-hidden="true"
+        >
+
+            <button
+                class="close-menu"
+                aria-label="Close navigation menu"
+            >
+                ✕
+            </button>
+
+            <ul>
+
+                <li>
+                    <a href="../index.html#home">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#explore">
+                        Explore
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#updates">
+                        Updates
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#events">
+                        Events
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#contact">
+                        Contact Us
+                    </a>
+                </li>
+
+            </ul>
+
+            <a
+                href="../index.html#report"
+                class="mobile-report-btn"
+            >
+                Report Problem
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =================================================
+         HEALTHCARE HERO
+    ================================================= -->
+
+    <section class="healthcare-hero">
+
+        <div class="hero-decoration hero-decoration-left"></div>
+
+        <div class="hero-content">
+
+            <div class="healthcare-eyebrow">
+                EXPLORE HEALTHCARE
+            </div>
+
+            <h1>
+                Find healthcare you can rely on
+            </h1>
+
+            <p>
+                Discover hospitals, clinics, health centres and pharmacies
+                across Kolar district.
+            </p>
+
+            <div class="healthcare-search">
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+                <input
+                    type="text"
+                    placeholder="Search hospitals, clinics, health centers, pharmacies..."
+                    aria-label="Search healthcare"
+                >
+
+                <button
+                    type="button"
+                    aria-label="Search"
+                >
+                    ⌕
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-decoration hero-decoration-right">
+
+            <span class="heartbeat-line">
+                ─────╱╲────╱╲────────
+            </span>
+
+            <span class="heart-icon">
+                ♡
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         HEALTHCARE CATEGORIES
+    ================================================= -->
+
+    <section class="categories">
+
+        <!-- HOSPITALS -->
+
+        <a
+            href="#hospitals"
+            class="category-card hospital"
+        >
+
+            <span class="category-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 21V8h16v13M2 21h20M12 2v5M9.5 4.5h5M9 12h2M13 12h2M9 16h2M13 16h2"/>
+                </svg>
+
+            </span>
+
+            <span class="category-name">
+                Hospitals
+            </span>
+
+            <span class="category-arrow">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+
+            </span>
+
+        </a>
+
+
+        <!-- CLINICS -->
+
+        <a
+            href="#clinics"
+            class="category-card clinic"
+        >
+
+            <span class="category-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 3v6a4 4 0 0 0 8 0V3M10 13v3a4 4 0 0 0 8 0v-1"/>
+                    <circle
+                        cx="18"
+                        cy="12"
+                        r="2.5"
+                    />
+                </svg>
+
+            </span>
+
+            <span class="category-name">
+                Clinics
+            </span>
+
+            <span class="category-arrow">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+
+            </span>
+
+        </a>
+
+
+        <!-- HEALTH CENTRES -->
+
+        <a
+            href="#health-centres"
+            class="category-card health"
+        >
+
+            <span class="category-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 21V6l7-3 7 3v15M2 21h20M9 9h2M13 9h2M9 13h2M13 13h2M10 21v-4h4v4"/>
+                </svg>
+
+            </span>
+
+            <span class="category-name">
+                Health Centres
+            </span>
+
+            <span class="category-arrow">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+
+            </span>
+
+        </a>
+
+
+        <!-- PHARMACIES -->
+
+        <a
+            href="#pharmacies"
+            class="category-card pharmacy"
+        >
+
+            <span class="category-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <rect
+                        x="2.5"
+                        y="8.5"
+                        width="19"
+                        height="7"
+                        rx="3.5"
+                        transform="rotate(-45 12 12)"
+                    />
+
+                    <path d="M9.2 9.2l5.6 5.6"/>
+                </svg>
+
+            </span>
+
+            <span class="category-name">
+                Pharmacies
+            </span>
+
+            <span class="category-arrow">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+
+            </span>
+
+        </a>
+
+    </section>
+
+
+    <!-- =================================================
+         HEALTHCARE LISTINGS
+    ================================================= -->
+
+    <section
+        class="healthcare-listings"
+        id="hospitals"
+    >
+
+        <!-- LISTINGS HEADER -->
+
+        <div class="listings-header">
+
+            <div class="listings-heading">
+
+                <h2>
+                    Government Hospitals
+                </h2>
+
+                <p>
+                    Find government hospitals across Kolar district.
+                </p>
+
+            </div>
+
+
+            <!-- TALUK FILTER -->
+
+            <div class="taluk-select">
+
+                <span>
+                    📍
+                </span>
+
+                <select aria-label="Select Taluk">
+
+                    <option value="">
+                        Select Taluk
+                    </option>
+
+                    <option value="kolar">
+                        Kolar
+                    </option>
+
+                    <option value="bangarpet">
+                        Bangarpet
+                    </option>
+
+                    <option value="malur">
+                        Malur
+                    </option>
+
+                    <option value="mulbagal">
+                        Mulbagal
+                    </option>
+
+                    <option value="srinivaspur">
+                        Srinivaspur
+                    </option>
+
+                    <option value="chintamani">
+                        Chintamani
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             HOSPITAL GRID
+        ================================================= -->
+
+        <div class="healthcare-grid">
+
+
+            <!-- =================================================
+                 HOSPITAL CARD 1
+            ================================================= -->
+
+            <article
+                class="healthcare-card"
+                data-taluk="kolar"
+            >
+
+                <div class="healthcare-card-image">
+
+                    <img
+                        src="../assets/sri-narasimharaja-hospital.jpg"
+                        alt="Sri Narasimharaja District Hospital, Kolar"
+                    >
+
+                </div>
+
+
+                <div class="healthcare-card-content">
+
+                    <div class="card-top">
+
+                        <span class="ownership government">
+                            Government
+                        </span>
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Sri Narasimharaja District Hospital to favourites"
+                        >
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <h3>
+                        Sri Narasimharaja District Hospital
+                    </h3>
+
+
+                    <p class="card-location">
+                        📍 Kolar Taluk
+                    </p>
+
+
+                    <div class="card-actions">
+
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=Sri+Narasimharaja+District+Hospital+Kolar"
+                            class="directions-btn"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            🧭 Get Directions
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================================
+                 HOSPITAL CARD 2
+            ================================================= -->
+
+            <article
+                class="healthcare-card"
+                data-taluk="bangarpet"
+            >
+
+                <div class="healthcare-card-image">
+
+                    <img
+                        src="../assets/government-hospital-bangarpet.png"
+                        alt="Government Hospital, Bangarpet"
+                    >
+
+                </div>
+
+
+                <div class="healthcare-card-content">
+
+                    <div class="card-top">
+
+                        <span class="ownership government">
+                            Government
+                        </span>
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Government Hospital, Bangarpet to favourites"
+                        >
+                            ♡
+                        </button>
+
+                    </div>
+
+
+                    <h3>
+                        Government Hospital, Bangarpet
+                    </h3>
+
+
+                    <p class="card-location">
+                        📍 Bangarpet Taluk
+                    </p>
+
+
+                    <div class="card-actions">
+
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=General+Hospital+Bangarpet+Kolar+Karnataka"
+                            class="directions-btn"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            🧭 Get Directions
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================= -->
+
+    <script src="hospital.js"></script>
+
+</body>
+
+</html>
