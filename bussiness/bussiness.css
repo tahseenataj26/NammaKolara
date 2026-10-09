@@ -1,0 +1,689 @@
+:root {
+    --bg: #fff5ea;
+    --fg: #241d1a;
+    --muted: #6f6560;
+    --line: #e9d9c8;
+
+    --accent: #f26b0f;
+    --accent-dark: #d95708;
+
+    --panel: #ffffff;
+    --chip: #ffe9d3;
+
+    /* category cards */
+    --card: #fffaf5;
+    --text: #1f1a17;
+    --orange: #f26b0f;
+}
+
+
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    margin: 0;
+    padding: 0;               /* no body padding, so the nav can touch the top */
+
+    background: var(--bg);
+    color: var(--fg);
+
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+    width: 100%;
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 60px;
+
+    background: rgba(255, 245, 234, 0.96);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 2px 12px rgba(36, 29, 26, 0.05);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    backdrop-filter: blur(10px);
+}
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 110px;
+    height: auto;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.03);
+}
+
+/* DESKTOP NAVIGATION */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-links a {
+    position: relative;
+
+    color: var(--fg);
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 8px 0;
+
+    transition: color 0.25s ease;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--accent);
+    border-radius: 10px;
+
+    transition: width 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* REPORT BUTTON */
+
+.report-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 19px;
+
+    background: var(--accent);
+    color: #ffffff;
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    box-shadow: 0 4px 12px rgba(242, 107, 15, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.report-btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(242, 107, 15, 0.25);
+}
+
+/* MENU BUTTON */
+
+.menu-toggle {
+    display: none;
+
+    border: none;
+    background: transparent;
+
+    color: var(--fg);
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+    padding: 6px;
+}
+
+
+/* ================================
+   MOBILE MENU
+================================ */
+
+.mobile-menu {
+    display: none;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 80%;
+    max-width: 350px;
+    height: 100vh;
+
+    background: var(--bg);
+    padding: 24px;
+
+    flex-direction: column;
+
+    box-shadow: -5px 0 25px rgba(36, 29, 26, 0.15);
+
+    z-index: 1100;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.close-menu {
+    align-self: flex-end;
+
+    border: none;
+    background: transparent;
+
+    color: var(--fg);
+    font-size: 28px;
+
+    cursor: pointer;
+    padding: 5px;
+}
+
+.mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 30px;
+}
+
+.mobile-menu ul li {
+    list-style: none;
+}
+
+.mobile-menu ul li a {
+    display: block;
+    padding: 12px 0;
+
+    color: var(--fg);
+    text-decoration: none;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.mobile-menu ul li a:hover {
+    color: var(--accent);
+}
+
+.mobile-report-btn {
+    display: block;
+    width: 100%;
+
+    padding: 13px 18px;
+
+    background: var(--accent);
+    color: #ffffff;
+
+    text-align: center;
+    text-decoration: none;
+
+    border-radius: 9px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   NAVBAR RESPONSIVE
+================================ */
+
+@media (max-width: 950px) {
+
+    .navbar {
+        min-height: 64px;
+        padding: 10px 24px;
+    }
+
+    .nav-links,
+    .report-btn {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .logo img {
+        width: 100px;
+    }
+}
+
+@media (max-width: 720px) {
+
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .logo img {
+        width: 95px;
+    }
+}
+
+/* ================================
+   BUSINESSES INTRO
+================================ */
+
+.business-intro {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 58px 24px 50px;
+
+    text-align: center;
+}
+
+
+/* ================================
+   SMALL LABEL
+================================ */
+
+.business-label {
+    margin: 0 0 16px;
+
+    color: var(--accent);
+
+    font-size: 14px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+/* ================================
+   MAIN HEADING
+================================ */
+
+.business-intro h1 {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    font-size: 48px;
+    line-height: 1.15;
+
+    font-weight: 800;
+
+    letter-spacing: -1.5px;
+
+    background: linear-gradient(
+        90deg,
+        #f26b0f,
+        #c026d3
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+}
+
+
+/* ================================
+   DESCRIPTION
+================================ */
+
+.business-description {
+    max-width: 700px;
+
+    margin: 16px auto 0;
+
+    color: var(--muted);
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* ================================
+   TALUK TABS
+================================ */
+
+.taluk-tabs {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 32px;
+}
+
+
+/* ================================
+   TALUK BUTTON
+================================ */
+
+.taluk-tab {
+    padding: 9px 19px;
+
+    border: 1px solid #f5c34b;
+
+    border-radius: 999px;
+
+    background: transparent;
+
+    color: var(--fg);
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* HOVER */
+
+.taluk-tab:hover {
+    border-color: var(--accent);
+
+    color: var(--accent);
+
+    transform: translateY(-1px);
+}
+
+
+/* ACTIVE */
+
+.taluk-tab.active {
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: #ffffff;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .business-intro {
+        padding: 45px 20px 40px;
+    }
+
+
+    .business-intro h1 {
+        font-size: 36px;
+
+        line-height: 1.2;
+
+        letter-spacing: -0.8px;
+    }
+
+
+    .business-description {
+        font-size: 15px;
+
+        line-height: 1.65;
+    }
+
+
+    .taluk-tabs {
+        gap: 8px;
+
+        margin-top: 26px;
+    }
+
+
+    .taluk-tab {
+        padding: 8px 15px;
+
+        font-size: 13px;
+    }
+
+}
+
+/* =========================
+   BUSINESS STORY
+========================= */
+
+.business-story {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 24px 80px;
+}
+
+/* IMAGE PLACEHOLDER */
+
+.story-image {
+    width: 100%;
+    height: 430px;
+    border-radius: 28px;
+    overflow: hidden;
+    margin-bottom: 28px;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #ffe4cc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+}
+
+.image-placeholder span {
+    font-size: 64px;
+    margin-bottom: 10px;
+}
+
+.image-placeholder p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* LOCATION */
+
+.story-location {
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* TITLE */
+
+.business-story h2 {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    color: var(--fg);
+}
+
+/* INTRO */
+
+.story-intro {
+    max-width: 760px;
+    margin: 16px 0 32px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* FACTS */
+
+.story-facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 30px 0;
+}
+
+.story-fact {
+    padding: 0 25px;
+    border-left: 2px solid var(--accent);
+}
+
+.story-fact:first-child {
+    padding-left: 0;
+    border-left: none;
+}
+
+.story-fact span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.story-fact p {
+    margin: 0;
+    color: var(--fg);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* READ STORY */
+
+.story-toggle {
+    border: none;
+    background: none;
+    padding: 0;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.story-toggle span {
+    margin-left: 6px;
+}
+
+/* FULL STORY */
+
+.story-full {
+    display: none;
+    max-width: 800px;
+    padding-top: 35px;
+}
+
+.story-full h3 {
+    margin: 25px 0 8px;
+    font-size: 20px;
+}
+
+.story-full p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .business-story {
+        padding: 20px 20px 60px;
+    }
+
+    .story-image {
+        height: 280px;
+        border-radius: 22px;
+    }
+
+    .business-story h2 {
+        font-size: 32px;
+    }
+
+    .story-intro {
+        font-size: 15px;
+    }
+
+    .story-facts {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .story-fact,
+    .story-fact:first-child {
+        padding: 0 0 0 18px;
+        border-left: 2px solid var(--accent);
+    }
+}
