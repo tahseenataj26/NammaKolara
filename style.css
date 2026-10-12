@@ -1301,23 +1301,13 @@ nav a:focus-visible {
     line-height: 1.7;
     max-width: 650px;
 }
-/* ---------- EXPLORE GRID ---------- */
 
 .explore-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-}
-
-
-/* ---------- EXPLORE CARD ---------- */
-
-.explore-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
-    align-items: stretch;
-    margin: 0 2%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 
@@ -1471,20 +1461,18 @@ nav a:focus-visible {
     transform: scale(1.05);
 }
 
-/* ============================= */
-/*      EXPLORE RESPONSIVE       */
-/* ============================= */
 
 @media (max-width: 1000px) {
-
     .explore-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
 }
 
-
 @media (max-width: 650px) {
+    .explore-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
 
     .explore-section {
         padding: 60px 5%;
@@ -1502,16 +1490,11 @@ nav a:focus-visible {
         font-size: 15px;
     }
 
-    .explore-grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
-    }
-
     .explore-image {
         height: 210px;
     }
-
 }
+
 /* ---------- EXPLORE HEADING ANIMATION ---------- */
 
 .explore-heading {
@@ -4671,3 +4654,13 @@ nav a:focus-visible {
     }
 
 }
+
+/* Center only the two remaining cards */
+.explore-card:nth-child(4) {
+    grid-column: 1;
+}
+
+.explore-card:nth-child(5) {
+    grid-column: 2;
+}
+

@@ -22,6 +22,172 @@ body {
 }
 
 
+
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    min-height: 72px;
+    padding: 10px 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(255, 245, 234, 0.96);
+    border-bottom: 1px solid #e9d9c8;
+    box-shadow: 0 2px 12px rgba(36, 29, 26, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 110px;
+    height: auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.nav-links a {
+    color: #241d1a;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: #f26b0f;
+}
+
+.report-btn,
+.mobile-report-btn {
+    padding: 11px 18px;
+    border-radius: 9px;
+    background: #f26b0f;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.report-btn:hover,
+.mobile-report-btn:hover {
+    background: #d95708;
+}
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    color: #241d1a;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* MOBILE MENU */
+@media (max-width: 950px) {
+    .navbar {
+        min-height: 64px;
+        padding: 10px 24px;
+    }
+
+    .nav-links,
+    .report-btn {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+
+        width: 80%;
+        max-width: 350px;
+        height: 100vh;
+        padding: 24px;
+
+        background: #fff5ea;
+        box-shadow: -5px 0 25px rgba(36, 29, 26, 0.15);
+
+        flex-direction: column;
+        z-index: 1100;
+    }
+
+    .mobile-menu.active {
+        display: flex;
+    }
+
+    .close-menu {
+        align-self: flex-end;
+        border: none;
+        background: transparent;
+        color: #241d1a;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    .mobile-menu ul {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 35px 0 25px;
+    }
+
+    .mobile-menu ul a {
+        display: block;
+        padding: 12px 0;
+        color: #241d1a;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    .mobile-menu ul a:hover {
+        color: #f26b0f;
+    }
+
+    .mobile-report-btn {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 18px;
+    }
+
+    .logo img {
+        width: 95px;
+    }
+}
+
 /* =========================================
    PLACES INTRO
    ========================================= */
