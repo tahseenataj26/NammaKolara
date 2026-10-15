@@ -1,636 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stay | Namma Kolara</title>
+        <link rel="stylesheet" href="stay.css">
+    </head>
+    <body>
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        <!-- NAVBAR -->
+    <nav
+        class="navbar"
+        role="navigation"
+        aria-label="Main navigation"
     >
 
-    <meta
-        name="description"
-        content="Discover hotels, resorts and comfortable stays across Kolar district."
-    >
-
-    <title>Stay in Kolar | Namma Kolar</title>
-
-
-    <!-- Google Font -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- Stay CSS -->
-
-    <link
-        rel="stylesheet"
-        href="stay.css"
-    >
-
-</head>
-
-
-<body>
-
-
-    <!-- =====================================================
-         STAY PAGE
-    ====================================================== -->
-
-    <main class="stay-page">
-
-
-        <!-- =================================================
-             INTRO / HOME SECTION
-        ================================================== -->
-
-        <section class="stay-intro">
-
-            <div class="stay-intro-container">
-
-
-                <!-- Eyebrow -->
-
-                <div class="stay-eyebrow scroll-reveal">
-
-                    <span class="eyebrow-line"></span>
-
-                    <span>
-                        STAYS IN KOLAR
-                    </span>
-
-                    <span class="eyebrow-line"></span>
-
-                </div>
-
-
-                <!-- Main Heading -->
-
-                <h1 class="stay-intro-title scroll-reveal">
-
-                    <span class="heading-dark">
-                        Find the
-                    </span>
-
-                    <span class="heading-orange">
-                        perfect stay
-                    </span>
-
-                    <span class="heading-pink">
-                        in Kolar.
-                    </span>
-
-                </h1>
-
-
-                <!-- Description -->
-
-                <p class="stay-intro-description scroll-reveal">
-
-                    Explore hotels, resorts and comfortable stays
-                    across Kolar district.
-
-                </p>
-
-
-                <!-- =================================================
-                     SEARCH
-                ================================================== -->
-
-                <div
-                    class="stay-search-wrapper scroll-reveal"
-                >
-
-                    <span
-                        class="search-icon"
-                        aria-hidden="true"
-                    >
-
-                        <svg
-                            viewBox="0 0 24 24"
-                        >
-
-                            <circle
-                                cx="11"
-                                cy="11"
-                                r="6.5"
-                            ></circle>
-
-                            <path
-                                d="M16 16L21 21"
-                            ></path>
-
-                        </svg>
-
-                    </span>
-
-
-                    <input
-                        type="search"
-                        id="staySearch"
-                        class="stay-search-input"
-                        placeholder="Search stays..."
-                        aria-label="Search stays"
-                        autocomplete="off"
-                    >
-
-
-                    <button
-                        type="button"
-                        class="search-clear-btn"
-                        id="searchClear"
-                        aria-label="Clear search"
-                    >
-
-                        ×
-
-                    </button>
-
-                </div>
-
-
-                <!-- =================================================
-                     CATEGORIES
-                ================================================== -->
-
-                <div
-                    class="stay-categories scroll-reveal"
-                    role="tablist"
-                    aria-label="Stay categories"
-                >
-
-                    <button
-                        type="button"
-                        class="stay-category active"
-                        data-category="all"
-                        role="tab"
-                        aria-selected="true"
-                    >
-                        All
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="stay-category"
-                        data-category="hotel"
-                        role="tab"
-                        aria-selected="false"
-                    >
-                        Hotels
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="stay-category"
-                        data-category="resort"
-                        role="tab"
-                        aria-selected="false"
-                    >
-                        Resorts
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="stay-category"
-                        data-category="lodge"
-                        role="tab"
-                        aria-selected="false"
-                    >
-                        Lodges
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="stay-category"
-                        data-category="homestay"
-                        role="tab"
-                        aria-selected="false"
-                    >
-                        Homestays
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             FEATURED STAYS
-        ================================================== -->
-
-        <section
-            class="featured-stays"
-            id="featured-stays"
+        <a
+            href="../index.html#home"
+            class="logo"
+        >
+            <img
+                src="../assets/logo.png"
+                alt="Namma Kolar logo"
+            >
+        </a>
+
+        <div class="nav-links">
+
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#explore">Explore</a>
+            <a href="../index.html#updates">Updates</a>
+            <a href="../index.html#events">Events</a>
+            <a href="../index.html#contact">Contact Us</a>
+
+        </div>
+
+        <a
+            href="../index.html#report"
+            class="report-btn"
+        >
+            Report Problem
+        </a>
+
+        <button
+            class="menu-toggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
+
+
+        <!-- MOBILE MENU -->
+        <div
+            class="mobile-menu"
+            aria-hidden="true"
         >
 
-
-            <!-- =================================================
-                 MOVING CARDS
-            ================================================== -->
-
-            <div
-                class="stay-marquee"
-                aria-label="Featured stays"
+            <button
+                class="close-menu"
+                aria-label="Close navigation menu"
             >
-
-                <div class="stay-track">
-
-
-                    <!-- =================================================
-                         SOURCE CARD 1
-                    ================================================== -->
-
-                    <article
-                        class="stay-card"
-                        data-category="hotel"
-                        data-search="elite narsapura hotel narsapura comfortable stay kolar"
-                    >
-
-                        <div class="stay-card-image">
-
-                            <img
-                                src="../assets/elite-narsapura.png"
-                                alt="Elite Narsapura"
-                                loading="lazy"
-                            >
-
-                            <span class="stay-image-badge">
-                                HOTEL
-                            </span>
-
-                        </div>
-
-
-                        <div class="stay-card-content">
-
-                            <span class="stay-type">
-                                HOTEL
-                            </span>
-
-
-                            <h3>
-                                Elite Narsapura
-                            </h3>
-
-
-                            <p>
-                                Comfortable stay in Narsapura.
-                            </p>
-
-
-                            <a
-                                href="elite-narsapura.html"
-                                class="stay-details-btn"
-                            >
-
-                                <span>
-                                    View Details
-                                </span>
-
-                                <span
-                                    class="details-arrow"
-                                    aria-hidden="true"
-                                >
-
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                    >
-
-                                        <path
-                                            d="M5 12h13"
-                                        ></path>
-
-                                        <path
-                                            d="M13 6l6 6-6 6"
-                                        ></path>
-
-                                    </svg>
-
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- =================================================
-                         SOURCE CARD 2
-                    ================================================== -->
-
-                    <article
-                        class="stay-card"
-                        data-category="resort"
-                        data-search="olivia resorts spa resort relaxing comfort kolar"
-                    >
-
-                        <div class="stay-card-image">
-
-                            <img
-                                src="../assets/olivia-resort.png"
-                                alt="Olivia Resorts and Spa"
-                                loading="lazy"
-                            >
-
-                            <span class="stay-image-badge">
-                                RESORT
-                            </span>
-
-                        </div>
-
-
-                        <div class="stay-card-content">
-
-                            <span class="stay-type">
-                                RESORT
-                            </span>
-
-
-                            <h3>
-                                Olivia Resorts &amp; Spa
-                            </h3>
-
-
-                            <p>
-                                Relaxing stay surrounded by comfort.
-                            </p>
-
-
-                            <a
-                                href="olivia-resort.html"
-                                class="stay-details-btn"
-                            >
-
-                                <span>
-                                    View Details
-                                </span>
-
-                                <span
-                                    class="details-arrow"
-                                    aria-hidden="true"
-                                >
-
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                    >
-
-                                        <path
-                                            d="M5 12h13"
-                                        ></path>
-
-                                        <path
-                                            d="M13 6l6 6-6 6"
-                                        ></path>
-
-                                    </svg>
-
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- =================================================
-                         SOURCE CARD 3
-                    ================================================== -->
-
-                    <article
-                        class="stay-card"
-                        data-category="hotel"
-                        data-search="aadya inn hotel convenient stay kolar"
-                    >
-
-                        <div class="stay-card-image">
-
-                            <img
-                                src="../assets/aadya-inn.png"
-                                alt="Aadya Inn"
-                                loading="lazy"
-                            >
-
-                            <span class="stay-image-badge">
-                                HOTEL
-                            </span>
-
-                        </div>
-
-
-                        <div class="stay-card-content">
-
-                            <span class="stay-type">
-                                HOTEL
-                            </span>
-
-
-                            <h3>
-                                Aadya Inn
-                            </h3>
-
-
-                            <p>
-                                A convenient stay for your trip.
-                            </p>
-
-
-                            <a
-                                href="aadya-inn.html"
-                                class="stay-details-btn"
-                            >
-
-                                <span>
-                                    View Details
-                                </span>
-
-                                <span
-                                    class="details-arrow"
-                                    aria-hidden="true"
-                                >
-
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                    >
-
-                                        <path
-                                            d="M5 12h13"
-                                        ></path>
-
-                                        <path
-                                            d="M13 6l6 6-6 6"
-                                        ></path>
-
-                                    </svg>
-
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- =================================================
-                         SOURCE CARD 4
-                    ================================================== -->
-
-                    <article
-                        class="stay-card"
-                        data-category="hotel"
-                        data-search="golden amoon hotel kolar comfortable stay"
-                    >
-
-                        <div class="stay-card-image">
-
-                            <img
-                                src="../assets/golden-amoon.png"
-                                alt="Golden Amoon"
-                                loading="lazy"
-                            >
-
-                            <span class="stay-image-badge">
-                                HOTEL
-                            </span>
-
-                        </div>
-
-
-                        <div class="stay-card-content">
-
-                            <span class="stay-type">
-                                HOTEL
-                            </span>
-
-
-                            <h3>
-                                Golden Amoon
-                            </h3>
-
-
-                            <p>
-                                A comfortable place to stay in Kolar.
-                            </p>
-
-
-                            <a
-                                href="golden-amoon.html"
-                                class="stay-details-btn"
-                            >
-
-                                <span>
-                                    View Details
-                                </span>
-
-                                <span
-                                    class="details-arrow"
-                                    aria-hidden="true"
-                                >
-
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                    >
-
-                                        <path
-                                            d="M5 12h13"
-                                        ></path>
-
-                                        <path
-                                            d="M13 6l6 6-6 6"
-                                        ></path>
-
-                                    </svg>
-
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 NO RESULTS
-            ================================================== -->
-
-            <div
-                class="stay-no-results"
-                id="stayNoResults"
+                ✕
+            </button>
+
+            <ul>
+
+                <li>
+                    <a href="../index.html#home">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#explore">
+                        Explore
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#updates">
+                        Updates
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#events">
+                        Events
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html#contact">
+                        Contact Us
+                    </a>
+                </li>
+
+            </ul>
+
+            <a
+                href="../index.html#report"
+                class="mobile-report-btn"
             >
+                Report Problem
+            </a>
 
-                <div class="no-results-icon">
-                    ✦
-                </div>
+        </div>
 
+    </nav>
 
-                <h3>
-                    No stays found
-                </h3>
+    
+<section class="stay-hero">
+    <div class="stay-hero-content">
+        <p class="stay-label">STAY IN KOLAR</p>
 
+        <h1>Find Your Perfect <span>Stay in Kolar</span></h1>
 
-                <p>
-                    Try another category or search for
-                    another stay.
-                </p>
+        <p class="stay-description">
+            From comfortable hotels to cozy homestays,
+            find the right place to stay and explore Kolar.
+        </p>
+    </div>
 
+    <div class="stay-hero-image">
+        <img src="../assets/stay-main.png"
+             alt="A comfortable place to stay in Kolar">
+    </div>
+</section>
 
-                <button
-                    type="button"
-                    class="reset-results-btn"
-                    id="resetResults"
-                >
-                    Show all stays
-                </button>
+    
 
-            </div>
-
-
-        </section>
-
-
-    </main>
-
-
-    <!-- Stay JavaScript -->
-
-    <script src="stay.js"></script>
-
+    
 </body>
-
 </html>

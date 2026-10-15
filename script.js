@@ -89,20 +89,17 @@ const exploreCards = document.querySelectorAll(".explore-card");
 
 const exploreObserver = new IntersectionObserver(
     (entries) => {
-
         entries.forEach((entry) => {
-
             if (entry.isIntersecting) {
                 entry.target.classList.add("show");
-            } else {
-                entry.target.classList.remove("show");
+
+                // Stop observing after the card appears
+                exploreObserver.unobserve(entry.target);
             }
-
         });
-
     },
     {
-        threshold: 0.2
+        threshold: 0.1
     }
 );
 

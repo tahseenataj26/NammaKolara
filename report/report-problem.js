@@ -1,3 +1,30 @@
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+const closeMenu = document.querySelector(".close-menu");
+
+
+/* ========================================= */
+/*              MOBILE MENU                  */
+/* ========================================= */
+
+if (menuToggle && mobileMenu) {
+
+    menuToggle.addEventListener("click", function() {
+        mobileMenu.classList.toggle("active");
+    });
+
+}
+
+if (closeMenu && mobileMenu) {
+
+    closeMenu.addEventListener("click", function() {
+        mobileMenu.classList.remove("active");
+    });
+
+}
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================

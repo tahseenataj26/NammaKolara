@@ -4655,12 +4655,53 @@ nav a:focus-visible {
 
 }
 
-/* Center only the two remaining cards */
-.explore-card:nth-child(4) {
-    grid-column: 1;
+
+
+
+
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;
 }
 
-.explore-card:nth-child(5) {
-    grid-column: 2;
+.explore-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
 }
 
+.explore-image {
+    width: 100%;
+    height: 220px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.explore-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 1000px) {
+    .explore-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .explore-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+    }
+}

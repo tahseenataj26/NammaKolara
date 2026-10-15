@@ -1,3 +1,28 @@
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+const closeMenu = document.querySelector(".close-menu");
+
+
+/* ========================================= */
+/*              MOBILE MENU                  */
+/* ========================================= */
+
+if (menuToggle && mobileMenu) {
+
+    menuToggle.addEventListener("click", function() {
+        mobileMenu.classList.toggle("active");
+    });
+
+}
+
+if (closeMenu && mobileMenu) {
+
+    closeMenu.addEventListener("click", function() {
+        mobileMenu.classList.remove("active");
+    });
+
+}
+
 /* =========================================
    NAMMA KOLAR — FOOD PAGE
    Scroll Reveal Animation
@@ -102,11 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     if (prefersReducedMotion.matches) {
+    foodCards.forEach((card) => {
+        card.classList.add("show");
+    });
 
-        foodCards.forEach((card) => {
-            card.classList.add("show");
-        });
-
-    }
-
-});
+    foodObserver.disconnect();
+}
+    });

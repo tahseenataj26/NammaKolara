@@ -13,10 +13,11 @@
     --white: #FFFFFF;
     --text: #292524;
     --muted: #817872;
+    --background: var(--cream);
+--primary-orange: var(--orange);
 
     --border: rgba(41, 37, 36, 0.08);
 }
-
 
 /* =========================================
    RESET
@@ -57,6 +58,183 @@ body {
     overflow-x: hidden;
 }
 
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+    padding: 10px 60px;
+
+    background-color: var(--background);
+
+    border-bottom: 1px solid #E7DED2;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+nav img {
+    width: 110px;
+    height: auto;
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    color: var(--primary-orange);
+}
+
+/* Report Button */
+
+.nav-report-btn,
+.mobile-report-btn {
+    background-color: var(--primary-orange);
+    padding: 11px 18px;
+    border-radius: 8px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.nav-report-btn:hover,
+.mobile-report-btn:hover {
+    background-color: #EA580C;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(249, 115, 22, 0.25);
+}
+section {
+    scroll-margin-top: 90px;
+}
+
+/* Mobile Menu Button */
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    color: var(--text);
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+}
+
+/* Mobile Menu */
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%;
+    max-width: 350px;
+    height: 100vh;
+    background-color: var(--background);
+    padding: 24px;
+    flex-direction: column;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu ul {
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 40px 0 30px;
+    padding: 0;
+}
+.mobile-menu ul li a {
+    display: block;
+    padding: 10px 0;
+
+    color: var(--text);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+.close-menu {
+    align-self: flex-end;
+    border: none;
+    background: transparent;
+    font-size: 26px;
+    cursor: pointer;
+}
+/* NAVBAR RESPONSIVE FIX */
+
+/* Desktop navbar */
+nav {
+    padding: 10px 30px;
+    gap: 20px;
+}
+
+nav ul {
+    gap: 22px;
+    flex-shrink: 0;
+}
+
+nav ul li,
+nav ul li a,
+.nav-report-btn {
+    white-space: nowrap;
+}
+
+/* Tablet and mobile: use existing toggle menu */
+@media (max-width: 900px) {
+    nav {
+        padding: 10px 20px;
+    }
+
+    nav > ul,
+    nav > .nav-report-btn {
+        display: none;
+    }
+
+    nav > .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    nav > a:first-child {
+        flex-shrink: 0;
+    }
+}
 
 /* =========================================
    MAIN LAYOUT
