@@ -1326,8 +1326,8 @@ nav a:focus-visible {
     box-shadow 0.4s ease,
     border-color 0.4s ease;
 }
-.event-card:hover {
-    transform: scale(1.06);
+.explore-card.show:hover {
+    transform: translateY(-6px);
     box-shadow: 0 20px 45px rgba(41, 37, 36, 0.15);
     border-color: rgba(250, 204, 21, 0.55);
 }
@@ -1802,7 +1802,7 @@ nav a:focus-visible {
 
 .filter-btn.active {
     background: var(--primary-orange);
-    border-color: var(var(--primary-orange));
+    border-color: var(--primary-orange);
     color: #ffffff;
 }
 
@@ -2543,13 +2543,7 @@ nav a:focus-visible {
         transform: none;
         transition: none;
     }
-
-    .event-card:hover {
-        transform: none;
-    }
-
 }
-
 /* ============================= */
 /*          KNOW KOLAR            */
 /* ============================= */
